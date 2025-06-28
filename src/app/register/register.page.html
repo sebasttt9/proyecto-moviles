@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img src="assets/icon/Group.png" alt="Logo" class="header-logo" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-content">
+  <div class="register-container">
+    <div class="register-title-section">
+      <h1>Registrarse</h1>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Nombre y Apellido en la misma fila -->
+      <div class="name-row">
+        <div class="name-input-container">
+          <ion-item class="name-input">
+            <ion-label position="floating">Nombre:</ion-label>
+            <ion-input type="text" formControlName="nombre" required></ion-input>
+          </ion-item>
+        </div>
+        <div class="lastname-input-container">
+          <ion-item class="lastname-input">
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input type="text" formControlName="apellido" required></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Correo -->
+      <div class="input-container">
+        <ion-item class="email-input">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" formControlName="email" required></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          <p>Correo inválido</p>
+        </ion-text>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="input-container">
+        <ion-item class="password-input">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          <p>La contraseña es obligatoria</p>
+        </ion-text>
+      </div>
+
+      <!-- Repetir Contraseña -->
+      <div class="input-container">
+        <ion-item class="confirm-password-input">
+          <ion-label position="floating">Repetir contraseña</ion-label>
+          <ion-input type="password" formControlName="confirmPassword" required></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+          <p>Las contraseñas no coinciden</p>
+        </ion-text>
+      </div>
+
+      <!-- Mensaje de validación -->
+      <div class="password-hint">
+        <p>La contraseña debe contener al menos 8 carácteres.</p>
+      </div>
+
+      <ion-button class="register-button" type="submit" [disabled]="registerForm.invalid">
+        Registrarse
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

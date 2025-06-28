@@ -1,0 +1,194 @@
+// Register Component - Diseño basado en Figma
+.register-content {
+  --background: #FFFFFF;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --padding-top: 20px;
+}
+
+// Header con logo
+ion-header {
+  ion-toolbar {
+    --background: #5E5CDE;
+    --color: #ffffff;
+    --min-height: 50px;
+    
+    ion-title {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      
+      .header-logo {
+        width: 60px;
+        height: 46px;
+        object-fit: contain;
+        background: transparent;
+      }
+    }
+  }
+}
+
+// Container principal
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  padding: 20px;
+}
+
+// Título "Registrarse"
+.register-title-section {
+  text-align: center;
+  margin: 40px 0;
+  
+  h1 {
+    font-family: 'ABeeZee', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: #000000;
+    margin: 0;
+  }
+}
+
+// Formulario
+form {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Fila de nombre y apellido
+.name-row {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  
+  .name-input-container,
+  .lastname-input-container {
+    flex: 1;
+  }
+  
+  .name-input,
+  .lastname-input {
+    --background: #E5E5E5;
+    --border-radius: 20px;
+    --border-width: 0;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-start: 0;
+    --inner-padding-end: 0;
+    border-radius: 20px;
+    
+    ion-label {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: #AEAEAE;
+    }
+    
+    ion-input {
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      color: #000000;
+    }
+  }
+}
+
+// Contenedores de inputs
+.input-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+// Estilos de inputs individuales
+.email-input,
+.password-input,
+.confirm-password-input {
+  width: 100%;
+  --background: #E5E5E5;
+  --border-radius: 20px;
+  --border-width: 0;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  
+  ion-label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #AEAEAE;
+  }
+  
+  ion-input {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #000000;
+  }
+}
+
+// Mensaje de ayuda para contraseña
+.password-hint {
+  width: 100%;
+  margin-bottom: 20px;
+  
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    color: #AEAEAE;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// Botón registrarse
+.register-button {
+  width: 140px;
+  height: 40px;
+  --background: #5E5CDE;
+  --color: #FFFFFF;
+  --border-radius: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: none;
+  margin: 20px 0;
+}
+
+// Mensajes de error
+ion-text {
+  width: 100%;
+  
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    margin: 5px 0;
+    text-align: center;
+  }
+}
+
+// Responsive para pantallas muy pequeñas
+@media (max-width: 360px) {
+  .register-title-section h1 {
+    font-size: 28px;
+  }
+  
+  .name-row {
+    flex-direction: column;
+    gap: 0;
+    
+    .name-input-container,
+    .lastname-input-container {
+      margin-bottom: 15px;
+    }
+  }
+}
