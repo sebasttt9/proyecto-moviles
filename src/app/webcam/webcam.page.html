@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/icon/Group.png" alt="Logo" class="header-logo" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="webcam-content">
+  <!-- Sección 1: Web Cam & estancia -->
+  <div class="section-1">
+    <div class="hero-content">
+      <h1>Web Cam & estancia</h1>
+      <p>Mira como se encuentra tu mascota mediante el servicio de llamadas en vivo.</p>
+      <ion-button class="tienda-button" fill="solid">Tienda</ion-button>
+    </div>
+  </div>
+
+  <!-- Sección 2: Te ofrecemos lo mejor -->
+  <div class="section-2">
+    <h2>Te ofrecemos lo mejor</h2>
+    <p>Puedes reservar una estancia para tu mascota, te mantendremos al tanto y podras verlo cuando quieras y donde estes.</p>
+    <ion-button class="estancias-button" (click)="goToReservations()">Estancias</ion-button>
+    <ion-button class="reservar-button" (click)="goToReservations()">Reservar</ion-button>
+  </div>
+
+  <!-- Sección 3: Servicio de Grooming -->
+  <div class="section-3">
+    <div class="grooming-content">
+      <h2>Servicio de Grooming</h2>
+      <p>Dicen que la mascota se parece a su dueño, por ello nos encargamos de que ellos se vean tan bien como tú.</p>
+      <ion-button class="agendar-button" (click)="scheduleGrooming()">Agendar</ion-button>
+    </div>
+  </div>
+
+  <!-- Sección 4: Atención veterinaria -->
+  <div class="section-4">
+    <div class="veterinary-content">
+      <h2>Atención veterinaria</h2>
+      <p>Si necesitas ayuda profesional, tenemos a los mejores esperando atender a tu mascota.</p>
+      <ion-button class="contactar-button" (click)="contactVet()">Contactar</ion-button>
+    </div>
+  </div>
+
+  <!-- Sección 5: ¿Buscas accesorios? -->
+  <div class="section-5">
+    <h2>¿Buscas accesorios?</h2>
+    <p>Estas de suerte, pues tenemos la tienda perfecta para lo que deseas a excelentes precios.</p>
+    <div class="accessories-grid">
+      <div class="accessory-item"></div>
+      <div class="accessory-item"></div>
+      <div class="accessory-item"></div>
+    </div>
+    <ion-button class="ver-mas-button" (click)="goToStore()">Ver más</ion-button>
+  </div>
+
+  <!-- Sección 6: También vendemos... -->
+  <div class="section-6">
+    <h2>También vendemos...</h2>
+    <p>Estas de suerte, pues tenemos la tienda perfecta para lo que deseas a excelentes precios.</p>
+    
+    <!-- Peces -->
+    <div class="animal-section peces">
+      <h3>Peces</h3>
+    </div>
+
+    <!-- Reptiles -->
+    <div class="animal-section reptiles">
+      <h3>Reptiles</h3>
+    </div>
+
+    <!-- Roedores -->
+    <div class="animal-section roedores">
+      <h3>Roedores</h3>
+    </div>
+  </div>
+
+  <!-- Sección 7: Adopta no compres -->
+  <div class="section-7">
+    <div class="adoption-content">
+      <h2>Adopta no compres</h2>
+      <p>Demuestra que ellos te importan, brindales un hogar al que amar. Únete a nuestra campaña.</p>
+      <ion-button class="ver-mas-white-button" (click)="goToAdoption()">Ver más</ion-button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-links">
+      <p (click)="goToWebcam()">Web cam</p>
+      <p (click)="goToReservations()">Reservar</p>
+      <p (click)="goToStore()">Tienda</p>
+      <p (click)="goToAdoption()">Adopta no compres</p>
+    </div>
+    <p class="copyright">Todos los derechos reservados</p>
+  </div>
+</ion-content>

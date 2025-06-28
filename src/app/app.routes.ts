@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
   },
+  {
+    path: 'webcam',
+    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+  },
 ];

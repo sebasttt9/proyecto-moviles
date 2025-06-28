@@ -26,7 +26,7 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
 
       if (email === 'admin@example.com' && password === '123456') {
-        this.router.navigateByUrl('/home', { replaceUrl: true });
+        this.router.navigateByUrl('/webcam', { replaceUrl: true });
       } else {
         const alert = await this.alertCtrl.create({
           header: 'Error',
