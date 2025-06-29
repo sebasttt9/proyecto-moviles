@@ -1,442 +1,286 @@
-// Webcam Page - Diseño completo basado en Figma
-.webcam-content {
-  --background: #FFFFFF;
-  --padding-start: 0px;
-  --padding-end: 0px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
+// Estilos simples para la página webcam
+.webcam-container {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #5E5CDE 0%, #7B79E8 100%);
+  min-height: 100vh;
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
 }
 
-// Header personalizado
+// Contenedor de botones de cámara
+.camera-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Estilos para botones de cámara
+.camera-btn {
+  --background: rgba(255, 255, 255, 0.9);
+  --color: #5E5CDE;
+  --border-radius: 25px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  height: 55px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    --background: rgba(255, 255, 255, 1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  ion-icon {
+    margin-right: 8px;
+    color: #5E5CDE;
+  }
+}
+
+// Botón de adopción
+.adoption-btn {
+  --background: rgba(255, 255, 255, 0.9);
+  --color: #5E5CDE;
+  --border-radius: 25px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  height: 55px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    --background: rgba(255, 255, 255, 1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  ion-icon {
+    margin-right: 8px;
+    color: #5E5CDE;
+  }
+}
+
+// Vista previa de imagen
+.image-preview {
+  margin-top: 30px;
+  
+  h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+// Estado de carga
+.loading {
+  margin-top: 30px;
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+  }
+  
+  ion-spinner {
+    --color: #ffffff;
+  }
+}
+
+// Header simple
 ion-header {
   ion-toolbar {
-    --background: #FFFFFF;
-    --color: #464646;
-    --min-height: 50px;
-    
-    ion-title {
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      
-      .header-logo {
-        width: 50px;
-        height: 37px;
-        object-fit: contain;
-        background: transparent;
-      }
-    }
-    
-    ion-menu-button {
-      --color: #464646;
-    }
+    --background: linear-gradient(135deg, #4A48C2 0%, #5E5CDE 100%);
+    --color: #ffffff;
   }
-}
-
-// Sección 1: Hero con imagen de fondo
-.section-1 {
-  position: relative;
-  width: 100%;
-  height: 672px;
-  background: url('/assets/icon/seccion 1.png') no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-start;
-  padding: 40px 15px;
   
-  .hero-content {
-    h1 {
-      font-family: 'ABeeZee', sans-serif;
-      font-size: 36px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 204px;
-      line-height: 43px;
-      margin-bottom: 30px;
-    }
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 18px;
-      font-weight: 500;
-      color: #FFFFFF;
-      width: 160px;
-      line-height: 21px;
-      margin-bottom: 50px;
-    }
-    
-    .tienda-button {
-      --background: #FFFFFF;
-      --color: #5E5CDE;
-      --border-radius: 20px;
-      width: 120px;
-      height: 35px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: none;
-    }
+  ion-title {
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  ion-menu-button {
+    --color: #ffffff;
   }
 }
 
-// Sección 2: Te ofrecemos lo mejor
-.section-2 {
-  padding: 40px 40px 60px 40px;
-  text-align: center;
+// Contenido principal
+ion-content {
+  --background: linear-gradient(135deg, #5E5CDE 0%, #7B79E8 100%);
+}
+
+// Secciones adicionales
+.services-section, .accessories-section, .pets-section {
+  margin-top: 40px;
   
   h2 {
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #000000;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 20px;
+  }
+}
+
+// Grid de servicios
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.service-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 5px;
   }
   
   p {
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #000000;
-    line-height: 19px;
-    margin-bottom: 40px;
-  }
-  
-  .estancias-button,
-  .reservar-button {
-    --background: #5E5CDE;
-    --color: #FFFFFF;
-    --border-radius: 20px;
-    width: 111px;
-    height: 35px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: none;
-    margin: 0 10px 10px 0;
-  }
-}
-
-// Sección 3: Servicio de Grooming
-.section-3 {
-  position: relative;
-  width: 100%;
-  height: 271px;
-  background: url('/assets/icon/seccion 3.png') no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-start;
-  padding: 40px 15px;
-  
-  .grooming-content {
-    h2 {
-      font-family: 'ABeeZee', sans-serif;
-      font-size: 24px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 148px;
-      line-height: 28px;
-      margin-bottom: 20px;
-    }
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 165px;
-      line-height: 19px;
-      margin-bottom: 30px;
-    }
-    
-    .agendar-button {
-      --background: #5E5CDE;
-      --color: #FFFFFF;
-      --border-radius: 20px;
-      width: 111px;
-      height: 35px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: none;
-    }
-  }
-}
-
-// Sección 4: Atención veterinaria
-.section-4 {
-  position: relative;
-  width: 100%;
-  height: 271px;
-  background: url('/assets/icon/seccion 4.png') no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-start;
-  padding: 40px 15px;
-  
-  .veterinary-content {
-    h2 {
-      font-family: 'ABeeZee', sans-serif;
-      font-size: 24px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 148px;
-      line-height: 28px;
-      margin-bottom: 20px;
-    }
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 164px;
-      line-height: 19px;
-      margin-bottom: 30px;
-    }
-    
-    .contactar-button {
-      --background: #5E5CDE;
-      --color: #FFFFFF;
-      --border-radius: 20px;
-      width: 111px;
-      height: 35px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: none;
-    }
-  }
-}
-
-// Sección 5: ¿Buscas accesorios?
-.section-5 {
-  padding: 40px 15px 60px 15px;
-  text-align: center;
-  
-  h2 {
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #000000;
-    margin-bottom: 20px;
-  }
-  
-  p {
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #000000;
-    line-height: 19px;
-    margin-bottom: 40px;
-    padding: 0 25px;
-  }
-  
-  .accessories-grid {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    padding: 0 15px;
-    
-    .accessory-item {
-      width: 97px;
-      height: 97px;
-      background: #E5E5E5;
-      border-radius: 10px;
-      background-size: cover;
-      background-position: center;
-      
-      &:nth-child(1) {
-        background: url('/assets/icon/collar.png') no-repeat center center;
-        background-size: cover;
-      }
-      
-      &:nth-child(2) {
-        background: url('/assets/icon/plato.png') no-repeat center center;
-        background-size: cover;
-      }
-      
-      &:nth-child(3) {
-        background: url('/assets/icon/54001x2%202.png') no-repeat center center;
-        background-size: cover;
-      }
-    }
-  }
-  
-  .ver-mas-button {
-    --background: #5E5CDE;
-    --color: #FFFFFF;
-    --border-radius: 20px;
-    width: 111px;
-    height: 35px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: none;
-  }
-}
-
-// Sección 6: También vendemos...
-.section-6 {
-  padding: 40px 0;
-  text-align: center;
-  
-  h2 {
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #000000;
-    margin-bottom: 20px;
-    padding: 0 40px;
-  }
-  
-  p {
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #000000;
-    line-height: 19px;
-    margin-bottom: 40px;
-    padding: 0 40px;
-  }
-  
-  .animal-section {
-    position: relative;
-    width: 100%;
-    height: 175px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: flex-end;
-    padding: 0 0 30px 40px;
-    background-size: cover;
-    background-position: center;
-    
-    &.peces {
-      background: url('/assets/icon/peces.png') no-repeat center center;
-      background-size: cover;
-    }
-    
-    &.reptiles {
-      background: url('/assets/icon/reptiles.png') no-repeat center center;
-      background-size: cover;
-    }
-    
-    &.roedores {
-      background: url('/assets/icon/roedores.png') no-repeat center center;
-      background-size: cover;
-    }
-    
-    h3 {
-      font-family: 'ABeeZee', sans-serif;
-      font-size: 36px;
-      font-weight: 400;
-      color: #FFFFFF;
-      margin: 0;
-    }
-  }
-}
-
-// Sección 7: Adopta no compres
-.section-7 {
-  position: relative;
-  width: 100%;
-  height: 306px;
-  background: url('/assets/icon/seccion 7.png') no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-start;
-  padding: 40px 15px;
-  
-  .adoption-content {
-    h2 {
-      font-family: 'ABeeZee', sans-serif;
-      font-size: 24px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 148px;
-      line-height: 28px;
-      margin-bottom: 30px;
-    }
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFFFFF;
-      width: 180px;
-      line-height: 19px;
-      margin-bottom: 40px;
-    }
-    
-    .ver-mas-white-button {
-      --background: #FFFFFF;
-      --color: #5E5CDE;
-      --border-radius: 20px;
-      width: 111px;
-      height: 35px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: none;
-    }
-  }
-}
-
-// Footer
-.footer {
-  background: #464646;
-  padding: 25px 15px;
-  
-  .footer-links {
-    margin-bottom: 20px;
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      color: #FFFFFF;
-      line-height: 13px;
-      margin: 10px 0;
-      cursor: pointer;
-      
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
-  
-  .copyright {
-    font-family: 'Raleway', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    color: #FFFFFF;
-    line-height: 13px;
-    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
     margin: 0;
   }
 }
 
-// Responsive design
-@media (max-width: 480px) {
-  .section-1 .hero-content h1,
-  .section-3 .grooming-content h2,
-  .section-4 .veterinary-content h2,
-  .section-7 .adoption-content h2 {
-    font-size: 20px;
+// Grid de accesorios
+.accessories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.accessory-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 8px;
   }
   
-  .section-5 .accessories-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  h4 {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+// Grid de mascotas
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.pet-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.2);
   }
   
-  .section-6 .animal-section h3 {
-    font-size: 28px;
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  
+  h3 {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .webcam-container {
+    padding: 15px;
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    .camera-buttons {
+      max-width: 100%;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .accessories-grid, .pets-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
