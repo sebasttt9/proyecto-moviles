@@ -1,117 +1,526 @@
-.cellphone {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #007bff;
-}
-
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 70px; /* Increased height */
-  background-color: #333;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.footer-links a {
-  font-size: 1.2rem; /* Increased font size */
-  letter-spacing: 2px; /* Added letter spacing */
-  margin: 0 10px; /* Added spacing between links */
-  text-decoration: none;
-  color: #fff;
-}
-
-
-.copyright {
-  font-size: 1rem; /* Increased font size */
+// Global Content Styling
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
   text-align: center;
-  margin-top: 10px;
 }
 
-
-.hero {
-  position: relative;
-  text-align: center;
-  color: white;
+// Toolbar Styling
+ion-toolbar {
+  --background: #007bff !important;
   
-  .image-container {
-    position: relative;
-    width: 100%;
-    height: auto;
+  ion-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .logo {
+      max-height: 50px;
+      display: block;
+      margin: auto;
+    }
   }
-  
 }
 
-
-.services {
-  margin: 20px 0;
+// Hero Section
+.hero {
+  padding: 40px 20px;
+  text-align: center;
   
   .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: white !important;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-align: center;
+    }
+    
+    p {
+      font-size: 1.5rem;
+      color: white !important;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    
+    ion-button {
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Services Sections
+.services {
+  padding: 40px 20px;
+  text-align: center;
+  
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    width: 100%;
-    height: auto;
+    
+    img {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+    }
   }
   
   .text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white !important;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: white !important;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    
+    .button-container {
+      display: flex;
+      justify-content: center;
+      
+      ion-button {
+        margin: 0 auto;
+      }
+    }
+  }
+  
+  // Direct styling for veterinary section
+  .veterinary-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 15px;
     text-align: center;
   }
   
+  .veterinary-text {
+    font-size: 1.2rem;
+    color: white !important;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    
+    ion-button {
+      margin: 0 auto;
+    }
+  }
+  
+  // Grooming section specific
+  .grooming-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .grooming-text {
+    font-size: 1.2rem;
+    color: white !important;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  // Adoption section specific
+  .adoption-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .adoption-text {
+    font-size: 1.2rem;
+    color: white !important;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  // General section styling
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: white !important;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
 }
 
-
+// Accessories Section
 .accessories {
-  margin: 20px 0;
+  padding: 40px 20px;
+  text-align: center;
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 30px;
+    text-align: center;
+  }
   
   .grid {
     display: flex;
     justify-content: center;
-  }
-  
-  .item {
-    margin: 10px;
-    text-align: center;
-
+    gap: 30px;
+    flex-wrap: wrap;
+    
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      img {
+        max-width: 120px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 10px;
+      }
+      
+      h4 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white !important;
+        margin: 0;
+        text-align: center;
+      }
+    }
   }
 }
 
-
+// Pets Section
 .pets {
-  margin: 20px 0;
+  padding: 40px 20px;
+  text-align: center;
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 30px;
+    text-align: center;
+  }
   
   .grid {
     display: flex;
     justify-content: center;
-  }
-  
-  .item {
-    margin: 10px;
-    text-align: center;
-  
+    gap: 30px;
+    flex-wrap: wrap;
+    
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      .image-with-text {
+        position: relative;
+        display: inline-block;
+        
+        img {
+          max-width: 200px;
+          width: 100%;
+          height: auto;
+          border-radius: 15px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .image-text {
+          position: absolute;
+          bottom: 15px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: white !important;
+          background-color: transparent;
+          padding: 8px 20px;
+          border-radius: 25px;
+          margin: 0;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+    }
   }
 }
 
-/* Applied color and centered the logo in the toolbar */
-.toolbar-content {
-  background-color: #007bff; /* Applied the specified color */
-  display: flex;
-  justify-content: center; /* Centered the logo */
-  align-items: center;
-  height: 70px; /* Explicitly set height for visibility */
+// Footer
+.footer {
+  padding: 30px 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 40px;
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      
+      .footer-link {
+        color: white !important;
+        text-decoration: none;
+        font-size: 1.1rem;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    
+    .copyright {
+      color: white !important;
+      font-size: 0.9rem;
+      margin: 0;
+      text-align: center;
+    }
+  }
 }
 
-.toolbar-content ion-title img.logo {
-  margin: 0 auto; /* Ensured the logo is centered */
-  max-height: 50px; /* Adjusted size for better visibility */
+// Button Styling
+ion-button {
+  --background: #007bff;
+  --background-hover: #0056b3;
+  --color: white;
+  --border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 10px;
+  
+  &.secondary {
+    --background: transparent;
+    --color: white;
+    --border-color: white;
+    --border-width: 2px;
+    --border-style: solid;
+  }
+}
+
+
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero {
+    padding: 20px 15px;
+    
+    .image-container {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      p {
+        font-size: 1.3rem;
+      }
+      
+      img {
+        max-width: 90%;
+      }
+    }
+  }
+  
+  .services {
+    padding: 20px 15px;
+    
+    .image-container {
+      img {
+        max-width: 280px;
+      }
+    }
+    
+    .text-overlay {
+      h2, .grooming-title, .veterinary-title, .adoption-title {
+        font-size: 1.7rem;
+      }
+      
+      p, .grooming-text, .veterinary-text, .adoption-text {
+        font-size: 1.1rem;
+      }
+    }
+    
+    h2 {
+      font-size: 1.7rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .accessories {
+    padding: 20px 15px;
+    
+    h2 {
+      font-size: 1.7rem;
+    }
+    
+    .grid {
+      gap: 20px;
+      
+      .item {
+        img {
+          max-width: 100px;
+        }
+        
+        h4 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  .pets {
+    padding: 20px 15px;
+    
+    h2 {
+      font-size: 1.7rem;
+    }
+    
+    .grid {
+      gap: 20px;
+      
+      .item {
+        .image-with-text {
+          img {
+            max-width: 160px;
+          }
+          
+          .image-text {
+            font-size: 1.1rem;
+            padding: 6px 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 15px 10px;
+    
+    .image-container {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  .services {
+    padding: 15px 10px;
+    
+    .image-container {
+      img {
+        max-width: 250px;
+      }
+    }
+  }
+  
+  .accessories {
+    padding: 15px 10px;
+    
+    .grid {
+      gap: 15px;
+      
+      .item {
+        img {
+          max-width: 80px;
+        }
+        
+        h4 {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
+  .pets {
+    padding: 15px 10px;
+    
+    .grid {
+      gap: 15px;
+      flex-direction: column;
+      align-items: center;
+      
+      .item {
+        .image-with-text {
+          img {
+            max-width: 140px;
+          }
+          
+          .image-text {
+            font-size: 1rem;
+            padding: 5px 12px;
+          }
+        }
+      }
+    }
+  }
 }

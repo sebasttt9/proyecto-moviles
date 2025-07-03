@@ -8,40 +8,46 @@
 
 <ion-content class="login-content">
   <div class="login-container">
-    <div class="login-title-section">
-      <h1>Iniciar sesión</h1>
-    </div>
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="input-container">
-        <ion-item class="email-input">
-          <ion-label position="floating">E-mail:</ion-label>
-          <ion-input type="email" formControlName="email" required></ion-input>
-        </ion-item>
-        <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-          <p>Correo inválido</p>
-        </ion-text>
+    <div class="login-card">
+      <div class="login-title-section">
+        <h1>Iniciar sesión</h1>
       </div>
 
-      <div class="input-container">
-        <ion-item class="password-input">
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" formControlName="password" required></ion-input>
-        </ion-item>
-        <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-          <p>La contraseña es obligatoria</p>
-        </ion-text>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <ion-item class="email-input">
+            <ion-label position="floating">E-mail:</ion-label>
+            <ion-input type="email" formControlName="email" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+            <p>Correo inválido</p>
+          </ion-text>
+        </div>
+
+        <div class="input-container">
+          <ion-item class="password-input">
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+            <p>La contraseña es obligatoria</p>
+          </ion-text>
+        </div>
+
+        <ion-button class="login-button" type="submit" [disabled]="loginForm.invalid">
+          Iniciar
+        </ion-button>
+      </form>
+
+      <div class="signup-section">
+        <p class="signup-text">¿Aún no tienes una cuenta?</p>
+        <p class="signup-text">Registrate para comenzar</p>
+        
+        <!-- Link estilizado como botón -->
+        <a href="/register" class="signup-link">
+          Registrarse
+        </a>
       </div>
-
-      <ion-button class="login-button" type="submit" [disabled]="loginForm.invalid">
-        Iniciar
-      </ion-button>
-    </form>
-
-    <div class="signup-section">
-      <p class="signup-text">¿Aún no tienes una cuenta?</p>
-      <p class="signup-text">Registrate para comenzar</p>
-      <ion-button class="signup-button" (click)="goToRegister()">Registrarse</ion-button>
     </div>
   </div>
 </ion-content>

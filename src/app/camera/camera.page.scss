@@ -1,0 +1,328 @@
+/* Modern Camera Page Styles */
+ion-content {
+  --background: #5E5CDE !important;
+  background: linear-gradient(135deg, #5E5CDE 0%, #4C4ACA 100%) !important;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+/* Camera Container */
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header Section */
+.camera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  padding-top: 40px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    ion-icon {
+      color: white;
+      font-size: 24px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+  }
+  
+  .status-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+/* Main Camera View */
+.camera-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.camera-main[style*="background-image"] {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: overlay;
+}
+
+/* Title Section */
+.title-section {
+  text-align: center;
+  margin-top: 60px;
+  
+  .camera-title {
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+  }
+  
+  .camera-subtitle {
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: white;
+    margin: 4px 0 0 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Info Section */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin: 40px 0;
+  
+  .location-info,
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    ion-icon {
+      color: white;
+    }
+    
+    span {
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+    }
+  }
+}
+
+/* Camera Controls */
+.camera-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+  
+  .control-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    ion-icon {
+      font-size: 32px;
+    }
+  }
+  
+  .gallery-btn,
+  .switch-btn {
+    --background: rgba(255, 255, 255, 0.2);
+    --color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .gallery-btn:hover,
+  .switch-btn:hover {
+    --background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  
+  .camera-btn {
+    width: 80px;
+    height: 80px;
+    --background: white;
+    --color: #5E5CDE;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    
+    ion-icon {
+      font-size: 40px;
+    }
+  }
+  
+  .camera-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Footer Section */
+.camera-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff6b6b;
+      transition: all 0.3s ease;
+    }
+    
+    .status-dot.connected {
+      background: #51cf66;
+      animation: pulse 2s infinite;
+    }
+    
+    .status-text {
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+    }
+  }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(94, 92, 222, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+  ion-spinner {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .camera-header {
+    padding: 16px;
+    padding-top: 35px;
+  }
+  
+  .title-section {
+    margin-top: 40px;
+  }
+  
+  .title-section .camera-title {
+    font-size: 36px;
+  }
+  
+  .title-section .camera-subtitle {
+    font-size: 30px;
+  }
+  
+  .camera-controls {
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .camera-controls .control-btn {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .camera-controls .control-btn ion-icon {
+    font-size: 28px;
+  }
+  
+  .camera-controls .camera-btn {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .camera-controls .camera-btn ion-icon {
+    font-size: 36px;
+  }
+  
+  .info-section {
+    gap: 12px;
+    margin: 30px 0;
+  }
+  
+  .info-section .location-info,
+  .info-section .user-info {
+    padding: 10px 16px;
+  }
+  
+  .info-section .location-info span,
+  .info-section .user-info span {
+    font-size: 14px;
+  }
+}

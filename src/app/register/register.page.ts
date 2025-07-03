@@ -2,14 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterModule]
 })
 export class RegisterPage implements OnInit {
   private fb = inject(FormBuilder);
@@ -68,5 +68,9 @@ export class RegisterPage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  goToLogin() {
+    this.router.navigateByUrl('/login');
   }
 }

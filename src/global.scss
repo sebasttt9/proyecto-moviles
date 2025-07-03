@@ -1,11 +1,4 @@
-html, body {
-  background: rgb(102, 102, 255);
-  color: white;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 ion-content {
   --background: rgb(93, 93, 225);
+  color: white !important; /* Ensure white text inside ion-content */
 }

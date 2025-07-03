@@ -30,4 +30,20 @@ export const routes: Routes = [
     path: 'grooming',
     loadComponent: () => import('./grooming/grooming.page').then((m) => m.GroomingPage),
   },
+  {
+    path: 'estancias',
+    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+  },
+  {
+    path: 'reservar',
+    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+  },
+  {
+    path: 'adopcion',
+    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+  },
+  {
+    path: 'veterinaria',
+    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+  },
 ];

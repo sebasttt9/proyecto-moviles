@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, AlertController, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
@@ -9,7 +9,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   templateUrl: './webcam.page.html',
   styleUrls: ['./webcam.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule, RouterModule]
 })
 export class WebcamPage implements OnInit {
   private router = inject(Router);
@@ -92,14 +92,12 @@ export class WebcamPage implements OnInit {
   }
 
   // Agendar grooming
-  scheduleGrooming() {
-    this.showFeatureNotAvailable('Servicio de Grooming');
-  }
+  // scheduleGrooming() {
+  //   this.showFeatureNotAvailable('Servicio de Grooming');
+  // }
 
   // Contactar veterinario
-  contactVet() {
-    this.showFeatureNotAvailable('Atención Veterinaria');
-  }
+  // (Método duplicado eliminado para evitar error)
 
   // Ir a tienda
   goToStore() {
@@ -107,9 +105,7 @@ export class WebcamPage implements OnInit {
   }
 
   // Ir a adopción
-  goToAdoption() {
-    this.showFeatureNotAvailable('Adopción');
-  }
+  // Método duplicado eliminado para evitar error
 
   // Ir a webcam (página actual)
   goToWebcam() {
@@ -253,16 +249,44 @@ export class WebcamPage implements OnInit {
     }
   }
 
+  // Navegación a diferentes páginas
   openWebCam() {
-    this.navCtrl.navigateForward('/webcam-view');
+    this.router.navigate(['/camera']);
+  }
+
+  scheduleGrooming() {
+    this.router.navigate(['/grooming']);
+  }
+
+  contactVet() {
+    this.router.navigate(['/veterinaria']);
+  }
+
+  goToAdoption() {
+    this.router.navigate(['/adopcion']);
   }
 
   openEstancias() {
-    this.navCtrl.navigateForward('/estancias');
+    this.router.navigate(['/estancias']);
   }
 
   openReservar() {
-    this.navCtrl.navigateForward('/reservar');
+    this.router.navigate(['/reservar']);
+  }
+
+  // Ir a home
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  // Ir a login
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  // Ir a register
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
   activateCamera() {
