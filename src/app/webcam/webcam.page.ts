@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, AlertController } from '@ionic/angular';
+import { IonicModule, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
@@ -14,7 +14,8 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 export class WebcamPage implements OnInit {
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
-  
+  private navCtrl = inject(NavController);
+
   capturedImage: string | undefined;
   isLoading: boolean = false;
 
@@ -250,5 +251,22 @@ export class WebcamPage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  openWebCam() {
+    this.navCtrl.navigateForward('/webcam-view');
+  }
+
+  openEstancias() {
+    this.navCtrl.navigateForward('/estancias');
+  }
+
+  openReservar() {
+    this.navCtrl.navigateForward('/reservar');
+  }
+
+  activateCamera() {
+    console.log('Activating camera...');
+    // Add logic to activate the Ionic camera service here
   }
 }

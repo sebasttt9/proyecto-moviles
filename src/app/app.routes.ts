@@ -22,4 +22,12 @@ export const routes: Routes = [
     path: 'webcam',
     loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
   },
+  {
+    path: 'camera',
+    loadComponent: () => import('./camera/camera.page').then( m => m.CameraPage)
+  },
+  {
+    path: 'grooming',
+    loadComponent: () => import('./grooming/grooming.page').then((m) => m.GroomingPage),
+  },
 ];

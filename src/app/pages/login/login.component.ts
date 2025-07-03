@@ -41,4 +41,8 @@ export class LoginComponent {
   goToRegister() {
     this.router.navigateByUrl('/register');
   }
+
+  goToWebcam() {
+    this.router.navigateByUrl('/webcam');
+  }
 }
