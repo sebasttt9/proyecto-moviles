@@ -108,9 +108,15 @@ ion-toolbar {
     .button-container {
       display: flex;
       justify-content: center;
+      position: relative;
+      z-index: 10;
       
       ion-button {
         margin: 0 auto;
+        position: relative;
+        z-index: 11;
+        pointer-events: auto;
+        cursor: pointer;
       }
     }
   }
@@ -135,9 +141,15 @@ ion-toolbar {
   .button-container {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 10;
     
     ion-button {
       margin: 0 auto;
+      position: relative;
+      z-index: 11;
+      pointer-events: auto;
+      cursor: pointer;
     }
   }
   
