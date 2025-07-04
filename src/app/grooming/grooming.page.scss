@@ -110,4 +110,758 @@ ion-button.primary {
   }
 }
 
+/* === DISEÑO RESPONSIVE COMPLETO PARA GROOMING === */
+@media (max-width: 320px) {
+  // Móviles muy pequeños
+  section.grooming {
+    padding: 20px 12px;
+    min-height: 60vh;
+    
+    h1 {
+      font-size: clamp(1.5rem, 8vw, 1.8rem);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    
+    p {
+      font-size: clamp(0.9rem, 4vw, 1rem);
+      max-width: 95%;
+      margin: 0 auto 16px auto;
+      line-height: 1.4;
+    }
+    
+    .service-details {
+      padding: 16px 12px;
+      gap: 12px;
+      
+      .service-item {
+        padding: 12px;
+        
+        h3 {
+          font-size: 1rem;
+          margin-bottom: 6px;
+        }
+        
+        p {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 16px 12px;
+      
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+      }
+      
+      .price-item {
+        padding: 10px;
+        margin: 8px 0;
+        
+        .service-name {
+          font-size: 0.9rem;
+        }
+        
+        .price {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 16px 12px;
+      
+      ion-button {
+        height: 44px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  // Móviles
+  section.grooming {
+    padding: 24px 16px;
+    min-height: 65vh;
+    
+    h1 {
+      font-size: clamp(1.8rem, 8vw, 2.2rem);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    p {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      max-width: 90%;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+    
+    .service-details {
+      padding: 20px 16px;
+      gap: 16px;
+      
+      .service-item {
+        padding: 16px;
+        
+        h3 {
+          font-size: 1.1rem;
+          margin-bottom: 8px;
+        }
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 20px 16px;
+      
+      h2 {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+      }
+      
+      .price-item {
+        padding: 12px;
+        margin: 10px 0;
+        
+        .service-name {
+          font-size: 1rem;
+        }
+        
+        .price {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 20px 16px;
+      
+      ion-button {
+        height: 48px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  // Tablets pequeñas
+  section.grooming {
+    padding: 32px 24px;
+    min-height: 70vh;
+    
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 2.8rem);
+      margin-bottom: 24px;
+    }
+    
+    p {
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      max-width: 85%;
+      margin: 0 auto 24px auto;
+    }
+    
+    .service-details {
+      padding: 28px 24px;
+      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      
+      .service-item {
+        padding: 20px;
+        
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+        }
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 28px 24px;
+      
+      h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .price-item {
+        padding: 16px;
+        margin: 0;
+        
+        .service-name {
+          font-size: 1.1rem;
+        }
+        
+        .price {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 28px 24px;
+      
+      ion-button {
+        height: 52px;
+        font-size: 1.1rem;
+        width: auto;
+        min-width: 200px;
+        max-width: 350px;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  // Tablets
+  section.grooming {
+    padding: 40px 32px;
+    min-height: 75vh;
+    max-width: 900px;
+    margin: 0 auto;
+    
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.2rem);
+      margin-bottom: 28px;
+    }
+    
+    p {
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+      max-width: 80%;
+      margin: 0 auto 28px auto;
+    }
+    
+    .service-details {
+      padding: 36px 32px;
+      gap: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      
+      .service-item {
+        padding: 24px;
+        
+        h3 {
+          font-size: 1.4rem;
+          margin-bottom: 12px;
+        }
+        
+        p {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 36px 32px;
+      
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 24px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .price-item {
+        padding: 20px;
+        
+        .service-name {
+          font-size: 1.2rem;
+        }
+        
+        .price {
+          font-size: 1.4rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 36px 32px;
+      
+      ion-button {
+        height: 56px;
+        font-size: 1.2rem;
+        min-width: 220px;
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1025px) {
+  // Desktop
+  section.grooming {
+    padding: 48px 40px;
+    min-height: 80vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    h1 {
+      font-size: clamp(3rem, 4vw, 4rem);
+      margin-bottom: 32px;
+    }
+    
+    p {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      max-width: 75%;
+      margin: 0 auto 32px auto;
+    }
+    
+    .service-details {
+      padding: 44px 40px;
+      gap: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      
+      .service-item {
+        padding: 28px;
+        
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 14px;
+        }
+        
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 44px 40px;
+      
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 28px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      
+      .price-item {
+        padding: 24px;
+        
+        .service-name {
+          font-size: 1.3rem;
+        }
+        
+        .price {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 44px 40px;
+      
+      ion-button {
+        height: 60px;
+        font-size: 1.3rem;
+        min-width: 250px;
+        max-width: 450px;
+      }
+    }
+  }
+}
+
+// Orientación landscape en móviles
+@media (max-height: 480px) and (orientation: landscape) {
+  section.grooming {
+    padding: 16px;
+    min-height: auto;
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      font-size: 1rem;
+      margin: 0 auto 12px auto;
+      max-width: 80%;
+    }
+    
+    .service-details {
+      padding: 12px 16px;
+      gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      
+      .service-item {
+        padding: 12px;
+        
+        h3 {
+          font-size: 0.9rem;
+          margin-bottom: 4px;
+        }
+        
+        p {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 12px 16px;
+      
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      
+      .price-item {
+        padding: 8px;
+        
+        .service-name {
+          font-size: 0.8rem;
+        }
+        
+        .price {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 12px 16px;
+      
+      ion-button {
+        height: 40px;
+        font-size: 0.9rem;
+        min-width: 160px;
+      }
+    }
+  }
+}
+
+/* === RESPONSIVE EXTREMES === */
+
+// Extra small devices (Galaxy Fold, etc.)
+@media (max-width: 280px) {
+  section.grooming {
+    padding: 16px 8px;
+    min-height: 60vh;
+    
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      font-size: 0.8rem;
+      margin: 0 auto 12px auto;
+      max-width: 95%;
+    }
+    
+    .service-details {
+      padding: 12px 8px;
+      gap: 8px;
+      
+      .service-item {
+        padding: 8px 6px;
+        
+        h3 {
+          font-size: 0.7rem;
+          margin-bottom: 2px;
+        }
+        
+        p {
+          font-size: 0.6rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 12px 8px;
+      
+      h2 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      
+      .price-item {
+        padding: 8px 6px;
+        
+        .service-name {
+          font-size: 0.7rem;
+        }
+        
+        .price {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 12px 8px;
+      
+      ion-button {
+        height: 40px;
+        font-size: 0.8rem;
+        min-width: 140px;
+      }
+    }
+  }
+}
+
+// Ultra-wide screens
+@media (min-width: 1920px) {
+  section.grooming {
+    padding: 80px 60px;
+    min-height: 80vh;
+    
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 48px;
+    }
+    
+    p {
+      font-size: 1.6rem;
+      margin: 0 auto 48px auto;
+      max-width: 70%;
+    }
+    
+    .service-details {
+      padding: 60px 60px;
+      gap: 40px;
+      
+      .service-item {
+        padding: 32px 24px;
+        
+        h3 {
+          font-size: 1.6rem;
+          margin-bottom: 12px;
+        }
+        
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 60px 60px;
+      
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .price-item {
+        padding: 32px 24px;
+        
+        .service-name {
+          font-size: 1.4rem;
+        }
+        
+        .price {
+          font-size: 1.8rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 60px 60px;
+      
+      ion-button {
+        height: 72px;
+        font-size: 1.4rem;
+        min-width: 300px;
+        max-width: 500px;
+      }
+    }
+  }
+}
+
+// Touch-friendly improvements
+@media (hover: none) and (pointer: coarse) {
+  section.grooming {
+    .service-item {
+      min-height: 100px;
+      padding: 16px 12px;
+    }
+    
+    .price-item {
+      min-height: 80px;
+      padding: 16px 12px;
+    }
+    
+    ion-button {
+      min-height: 48px;
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  section.grooming {
+    .service-item {
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    .price-item {
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    ion-button {
+      --border-width: 2px;
+      --border-color: currentColor;
+    }
+  }
+}
+
+// Improved landscape for very small screens
+@media (max-height: 350px) and (orientation: landscape) {
+  section.grooming {
+    padding: 8px 12px;
+    min-height: auto;
+    
+    h1 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+    
+    p {
+      font-size: 0.7rem;
+      margin: 0 auto 6px auto;
+      max-width: 80%;
+    }
+    
+    .service-details {
+      padding: 6px 12px;
+      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      
+      .service-item {
+        padding: 4px 3px;
+        
+        h3 {
+          font-size: 0.6rem;
+          margin-bottom: 1px;
+        }
+        
+        p {
+          font-size: 0.5rem;
+        }
+      }
+    }
+    
+    .pricing-section {
+      padding: 6px 12px;
+      
+      h2 {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+      }
+      
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3px;
+      }
+      
+      .price-item {
+        padding: 3px 2px;
+        
+        .service-name {
+          font-size: 0.5rem;
+        }
+        
+        .price {
+          font-size: 0.6rem;
+        }
+      }
+    }
+    
+    .booking-section {
+      padding: 6px 12px;
+      
+      ion-button {
+        height: 32px;
+        font-size: 0.7rem;
+        min-width: 100px;
+      }
+    }
+  }
+}
+
+// Print styles
+@media print {
+  section.grooming {
+    color: black !important;
+    background: white !important;
+    
+    h1, h2, h3, p {
+      color: black !important;
+    }
+    
+    .service-item,
+    .price-item {
+      border: 1px solid black !important;
+      background: white !important;
+    }
+    
+    ion-button {
+      display: none !important;
+    }
+  }
+}
+
 

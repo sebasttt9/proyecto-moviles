@@ -1,0 +1,514 @@
+// Optimización de rendimiento
+:host {
+  display: block;
+  contain: layout style paint;
+}
+
+// Global Content Styling
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  min-height: 100vh;
+}
+
+// Toolbar Styling
+ion-toolbar {
+  --background: #007bff !important;
+  
+  // Home Button Styling
+  ion-buttons[slot="start"] {
+    ion-button {
+      --color: white;
+      --border-radius: 8px;
+      --padding-start: 8px;
+      --padding-end: 8px;
+      margin-left: 8px;
+      
+      ion-icon {
+        font-size: 20px;
+        margin-right: 4px;
+      }
+      
+      .home-text {
+        font-size: 14px;
+        font-weight: 500;
+        
+        @media (max-width: 480px) {
+          display: none;
+        }
+      }
+      
+      &:hover {
+        --background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+  
+  ion-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .logo {
+      max-height: 40px;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  will-change: auto;
+  transform: translateZ(0);
+  
+  .hero-container {
+    max-width: 1200px;
+    width: 100%;
+    padding-bottom: 40px; // Separación del fondo
+  }
+  
+  .hero-content {
+    text-align: center;
+    
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: white !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      
+      @media (max-width: 768px) {
+        font-size: 2.8rem;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 2.2rem;
+      }
+    }
+    
+    p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      color: white !important;
+      opacity: 0.95;
+      
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+// Quick Actions
+.quick-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .action-btn {
+    --border-radius: 25px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    --padding-start: 30px;
+    --padding-end: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: none;
+    transition: all 0.3s ease;
+    
+    &.primary {
+      --background: rgba(255, 255, 255, 0.2);
+      --color: white;
+      --border-color: white;
+      --border-width: 2px;
+      
+      &:hover {
+        --background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+    }
+    
+    &.secondary {
+      --background: transparent;
+      --color: white;
+      --border-color: rgba(255, 255, 255, 0.5);
+      --border-width: 2px;
+      
+      &:hover {
+        --background: rgba(255, 255, 255, 0.1);
+        --border-color: white;
+      }
+    }
+    
+    ion-icon {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Stats Grid
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stat-icon {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 15px;
+  }
+  
+  .stat-info {
+    flex: 1;
+    
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: white;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+// Calendar Section
+.calendar-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 30px;
+  margin-bottom: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+}
+
+.calendar-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  
+  h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .nav-btn {
+    --color: white;
+    --background: rgba(255, 255, 255, 0.1);
+    --border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    
+    &:hover {
+      --background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  
+  .day-header {
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    
+    &.other-month {
+      color: rgba(255, 255, 255, 0.3);
+      cursor: not-allowed;
+    }
+    
+    &.today {
+      background: rgba(255, 193, 7, 0.3);
+      color: #ffc107;
+      font-weight: 700;
+    }
+    
+    &.selected {
+      background: rgba(40, 167, 69, 0.3);
+      color: #28a745;
+      font-weight: 700;
+    }
+    
+    &.has-appointment::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 6px;
+      height: 6px;
+      background: #dc3545;
+      border-radius: 50%;
+    }
+    
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &:not(.disabled):not(.other-month):hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+  }
+}
+
+// Recent Appointments
+.recent-section {
+  margin-bottom: 30px; // Espaciado inferior adicional
+  
+  h2 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.appointment-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
+  }
+  
+  .appointment-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px;
+    
+    ion-icon {
+      font-size: 1.5rem;
+      color: white;
+    }
+  }
+  
+  .appointment-info {
+    flex: 1;
+    
+    h4 {
+      margin: 0 0 5px 0;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    p {
+      margin: 0 0 5px 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+    
+    .appointment-date {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+  
+  .appointment-status {
+    ion-badge {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+  }
+}
+
+// Alert Customizations
+.time-slots-alert {
+  .alert-wrapper {
+    max-width: 400px;
+    
+    .alert-button-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      
+      .time-slot-button {
+        margin: 5px;
+        --background: #007bff;
+        --color: white;
+        border-radius: 10px;
+      }
+      
+      .cancel-button {
+        grid-column: 1 / -1;
+        --background: #dc3545;
+        --color: white;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.pet-selection-alert,
+.appointment-form-alert {
+  .alert-wrapper {
+    max-width: 500px;
+    
+    .pet-button,
+    .confirm-button {
+      --background: #28a745;
+      --color: white;
+      margin: 5px 0;
+      border-radius: 10px;
+    }
+    
+    .cancel-button {
+      --background: #dc3545;
+      --color: white;
+      margin-top: 10px;
+    }
+  }
+}
+
+.success-alert {
+  .alert-wrapper {
+    .view-button {
+      --background: #007bff;
+      --color: white;
+    }
+    
+    .ok-button {
+      --background: #28a745;
+      --color: white;
+    }
+  }
+}
+
+.error-alert {
+  .alert-wrapper {
+    .alert-button {
+      --background: #dc3545;
+      --color: white;
+    }
+  }
+}
+
+.camera-alert {
+  .alert-wrapper {
+    max-width: 400px;
+  }
+}
+
+.appointment-details-alert {
+  .appointment-details {
+    text-align: left;
+    padding: 10px 0;
+    
+    p {
+      margin: 8px 0;
+      line-height: 1.5;
+      
+      strong {
+        color: #007bff;
+      }
+    }
+  }
+  
+  .camera-button {
+    --background: #007bff;
+    --color: white;
+  }
+}

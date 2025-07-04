@@ -1,10 +1,34 @@
-// Simplified Functional Login Component
 .login-content {
-  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  position: relative;
+  overflow: hidden;
 }
 
-// Header
+// === ENHANCED PARTICLE STYLES FOR LOGIN ===
+.particle-blue {
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.8), rgba(102, 126, 234, 0.2)) !important;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+.particle-purple {
+  background: radial-gradient(circle, rgba(118, 75, 162, 0.8), rgba(118, 75, 162, 0.2)) !important;
+  box-shadow: 0 0 10px rgba(118, 75, 162, 0.5);
+}
+
+.particle-cyan {
+  background: radial-gradient(circle, rgba(78, 205, 196, 0.8), rgba(78, 205, 196, 0.2)) !important;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+}
+
+.particle-pink {
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.8), rgba(255, 107, 107, 0.2)) !important;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.particle-white {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
 ion-header {
   ion-toolbar {
     --background: #007bff !important;
@@ -32,6 +56,8 @@ ion-header {
   justify-content: center;
   min-height: calc(100vh - 60px);
   padding: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .login-card {
@@ -41,6 +67,8 @@ ion-header {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 400px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .login-title-section {
@@ -175,22 +203,269 @@ ion-text {
   }
 }
 
-// Responsive design
-@media (max-width: 480px) {
-  .login-container {
-    padding: 16px;
-  }
-  
-  .login-card {
-    padding: 24px 20px;
-  }
-  
-  .login-title-section h1 {
-    font-size: 24px;
+
+.login-card, .register-card {
+  .input-container {
+    position: relative;
+    
+    ion-item {
+      transform: none !important;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      
+      &:focus-within {
+        transform: none !important;
+        box-shadow: 0 2px 12px rgba(0, 123, 255, 0.15);
+      }
+    }
+    
+    
+    .email-input,
+    .password-input,
+    .name-input,
+    .lastname-input,
+    .confirm-password-input {
+      transform: none !important;
+      position: relative;
+      z-index: 1;
+    }
   }
 }
 
-// Force functionality
+
+.input-container.stagger-animation {
+  transform: translateY(0) !important;
+  opacity: 1;
+  
+
+  &.animate-in {
+    animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
+
+.input-container:hover {
+  ion-item {
+    --border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+  }
+}
+
+// === DISEÑO RESPONSIVE MEJORADO ===
+@media (max-width: 320px) {
+  // Móviles muy pequeños
+  .login-container {
+    padding: 12px;
+    min-height: calc(100vh - 56px);
+  }
+  
+  .login-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+  
+  .login-title-section h1 {
+    font-size: 22px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 48px;
+    
+    ion-label {
+      font-size: 14px;
+    }
+    
+    ion-input {
+      font-size: 14px;
+    }
+  }
+  
+  .login-button {
+    height: 48px;
+    font-size: 14px;
+  }
+  
+  .signup-link {
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  // Móviles
+  .login-container {
+    padding: 16px;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .login-card {
+    padding: 32px 24px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .login-title-section {
+    margin-bottom: 24px;
+    
+    h1 {
+      font-size: 24px;
+    }
+  }
+  
+  .input-container {
+    margin-bottom: 16px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 52px;
+  }
+  
+  .login-button {
+    height: 52px;
+    margin: 16px 0;
+  }
+  
+  .signup-section {
+    margin-top: 24px;
+    
+    .signup-text {
+      font-size: 13px;
+    }
+    
+    .signup-link {
+      height: 44px;
+      line-height: 44px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  // Tablets pequeñas
+  .login-container {
+    padding: 24px;
+  }
+  
+  .login-card {
+    padding: 40px 32px;
+    max-width: 480px;
+  }
+  
+  .login-title-section h1 {
+    font-size: 30px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 58px;
+    
+    ion-input {
+      font-size: 17px;
+    }
+  }
+  
+  .login-button {
+    height: 58px;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  // Tablets
+  .login-container {
+    padding: 32px;
+  }
+  
+  .login-card {
+    padding: 48px 40px;
+    max-width: 520px;
+  }
+  
+  .login-title-section h1 {
+    font-size: 32px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 60px;
+    
+    ion-input {
+      font-size: 18px;
+    }
+  }
+  
+  .login-button {
+    height: 60px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  // Desktop
+  .login-container {
+    padding: 40px;
+  }
+  
+  .login-card {
+    padding: 56px 48px;
+    max-width: 560px;
+  }
+  
+  .login-title-section h1 {
+    font-size: 36px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 64px;
+    
+    ion-input {
+      font-size: 18px;
+    }
+  }
+  
+  .login-button {
+    height: 64px;
+    font-size: 18px;
+  }
+}
+
+// Orientación landscape en móviles
+@media (max-height: 480px) and (orientation: landscape) {
+  .login-container {
+    padding: 8px 16px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+  
+  .login-card {
+    padding: 20px 24px;
+  }
+  
+  .login-title-section {
+    margin-bottom: 16px;
+    
+    h1 {
+      font-size: 20px;
+    }
+  }
+  
+  .input-container {
+    margin-bottom: 12px;
+  }
+  
+  .login-button {
+    margin: 12px 0;
+  }
+  
+  .signup-section {
+    margin-top: 16px;
+  }
+}
+
+
 ion-button {
   pointer-events: auto !important;
   cursor: pointer !important;
@@ -198,5 +473,117 @@ ion-button {
 
 ion-input {
   pointer-events: auto !important;
+}
+
+/* === RESPONSIVE EXTREMES === */
+
+// Extra small devices (Galaxy Fold, etc.)
+@media (max-width: 280px) {
+  .login-container {
+    padding: 8px;
+  }
+  
+  .login-card {
+    padding: 16px 12px;
+  }
+  
+  .login-title-section {
+    margin-bottom: 16px;
+    
+    h1 {
+      font-size: 20px;
+    }
+  }
+  
+  .input-container {
+    margin-bottom: 14px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 44px;
+    
+    ion-input {
+      font-size: 14px;
+    }
+  }
+  
+  .login-button {
+    height: 44px;
+    font-size: 14px;
+  }
+  
+  .signup-section {
+    margin-top: 16px;
+    
+    .signup-text {
+      font-size: 12px;
+    }
+    
+    .signup-button,
+    .signup-link {
+      height: 40px;
+      font-size: 13px;
+    }
+  }
+}
+
+// Ultra-wide screens
+@media (min-width: 1920px) {
+  .login-container {
+    padding: 60px;
+  }
+  
+  .login-card {
+    padding: 64px 56px;
+    max-width: 640px;
+  }
+  
+  .login-title-section h1 {
+    font-size: 40px;
+  }
+  
+  .email-input,
+  .password-input {
+    --min-height: 72px;
+    
+    ion-input {
+      font-size: 20px;
+    }
+  }
+  
+  .login-button {
+    height: 72px;
+    font-size: 20px;
+  }
+}
+
+// Touch-friendly improvements
+@media (hover: none) and (pointer: coarse) {
+  .login-button,
+  .signup-button,
+  .signup-link {
+    min-height: 48px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .login-card {
+    border: 2px solid #000;
+  }
+  
+  .email-input,
+  .password-input {
+    --border-width: 2px;
+    --border-color: #000;
+  }
+  
+  .login-button {
+    --border-width: 2px;
+    --border-color: #007bff;
+  }
 }
 

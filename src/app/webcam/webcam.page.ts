@@ -22,6 +22,10 @@ export class WebcamPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Optimización mínima: asegurar que Angular detecte cambios
+    Promise.resolve().then(() => {
+      // Forzar un ciclo de detección después de la inicialización
+    });
   }
 
   // Tomar foto con la cámara
@@ -30,24 +34,50 @@ export class WebcamPage implements OnInit {
     try {
       const image = await Camera.getPhoto({
         quality: 90,
-        allowEditing: false,
+        allowEditing: true,
         resultType: CameraResultType.DataUrl,
-        source: CameraSource.Camera
+        source: CameraSource.Camera,
+        width: 1024,
+        height: 1024
       });
 
       this.capturedImage = image.dataUrl;
       
       const alert = await this.alertCtrl.create({
-        header: 'Foto capturada',
-        message: '¡Foto tomada exitosamente!',
-        buttons: ['OK']
+        header: '✅ Foto Capturada',
+        message: '¡Foto tomada exitosamente! ¿Qué deseas hacer con ella?',
+        cssClass: 'success-alert',
+        buttons: [
+          {
+            text: '👀 Ver Foto',
+            cssClass: 'view-button',
+            handler: () => {
+              this.showImagePreview();
+            }
+          },
+          {
+            text: '💾 Guardar',
+            cssClass: 'save-button',
+            handler: () => {
+              this.downloadImage();
+            }
+          },
+          {
+            text: 'OK',
+            cssClass: 'ok-button'
+          }
+        ]
       });
       await alert.present();
     } catch (error) {
       const alert = await this.alertCtrl.create({
-        header: 'Error',
-        message: 'No se pudo acceder a la cámara. Asegúrate de dar permisos.',
-        buttons: ['OK']
+        header: '❌ Error',
+        message: 'No se pudo acceder a la cámara. Asegúrate de dar permisos de cámara a la aplicación.',
+        cssClass: 'error-alert',
+        buttons: [{
+          text: 'Entendido',
+          cssClass: 'error-ok-button'
+        }]
       });
       await alert.present();
     } finally {
@@ -61,55 +91,55 @@ export class WebcamPage implements OnInit {
     try {
       const image = await Camera.getPhoto({
         quality: 90,
-        allowEditing: false,
+        allowEditing: true,
         resultType: CameraResultType.DataUrl,
-        source: CameraSource.Photos
+        source: CameraSource.Photos,
+        width: 1024,
+        height: 1024
       });
 
       this.capturedImage = image.dataUrl;
       
       const alert = await this.alertCtrl.create({
-        header: 'Imagen seleccionada',
-        message: '¡Imagen seleccionada de la galería!',
-        buttons: ['OK']
+        header: '✅ Imagen Seleccionada',
+        message: '¡Imagen cargada desde la galería! ¿Qué deseas hacer con ella?',
+        cssClass: 'success-alert',
+        buttons: [
+          {
+            text: '👀 Ver Imagen',
+            cssClass: 'view-button',
+            handler: () => {
+              this.showImagePreview();
+            }
+          },
+          {
+            text: '📤 Compartir',
+            cssClass: 'share-button',
+            handler: () => {
+              this.shareImage();
+            }
+          },
+          {
+            text: 'OK',
+            cssClass: 'ok-button'
+          }
+        ]
       });
       await alert.present();
     } catch (error) {
       const alert = await this.alertCtrl.create({
-        header: 'Error',
-        message: 'No se pudo acceder a la galería.',
-        buttons: ['OK']
+        header: '❌ Error',
+        message: 'No se pudo acceder a la galería. Verifica los permisos de almacenamiento.',
+        cssClass: 'error-alert',
+        buttons: [{
+          text: 'Entendido',
+          cssClass: 'error-ok-button'
+        }]
       });
       await alert.present();
     } finally {
       this.isLoading = false;
     }
-  }
-
-  // Navegación a reservaciones
-  goToReservations() {
-    this.showFeatureNotAvailable('Reservaciones');
-  }
-
-  // Agendar grooming
-  // scheduleGrooming() {
-  //   this.showFeatureNotAvailable('Servicio de Grooming');
-  // }
-
-  // Contactar veterinario
-  // (Método duplicado eliminado para evitar error)
-
-  // Ir a tienda
-  goToStore() {
-    this.showFeatureNotAvailable('Tienda');
-  }
-
-  // Ir a adopción
-  // Método duplicado eliminado para evitar error
-
-  // Ir a webcam (página actual)
-  goToWebcam() {
-    // Ya estamos en webcam
   }
 
   // Mostrar mensaje de funcionalidad no disponible
@@ -122,56 +152,106 @@ export class WebcamPage implements OnInit {
     await alert.present();
   }
 
-  // Mostrar detalles de mascotas
-  async showPetDetails(petType: string) {
-    const petNames: { [key: string]: string } = {
-      'peces': 'Peces',
-      'reptiles': 'Reptiles', 
-      'roedores': 'Roedores'
-    };
-    
+  // Abrir webcam en vivo
+  async openLiveWebcam() {
     const alert = await this.alertCtrl.create({
-      header: `${petNames[petType]}`,
-      message: `Conoce más sobre nuestros ${petNames[petType].toLowerCase()} y encuentra tu mascota ideal.`,
+      header: '📹 Webcam en Vivo',
+      subHeader: 'Conecta con las cámaras de nuestras instalaciones',
+      message: 'Selecciona qué cámara quieres ver en tiempo real:',
+      cssClass: 'live-webcam-alert',
       buttons: [
         {
-          text: 'Ver Catálogo',
+          text: '🏠 Cámara Principal',
+          cssClass: 'main-camera-button',
           handler: () => {
-            this.goToStore();
+            this.connectToCamera('principal');
           }
         },
         {
-          text: 'Cerrar',
-          role: 'cancel'
+          text: '🎮 Área de Juego',
+          cssClass: 'play-camera-button',
+          handler: () => {
+            this.connectToCamera('juego');
+          }
+        },
+        {
+          text: '🛏️ Área de Descanso',
+          cssClass: 'rest-camera-button',
+          handler: () => {
+            this.connectToCamera('descanso');
+          }
+        },
+        {
+          text: '❌ Cancelar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
         }
       ]
     });
     await alert.present();
   }
 
-  // Abrir webcam en vivo
-  async openLiveWebcam() {
+  // Conectar a cámara específica
+  async connectToCamera(cameraType: string) {
+    const cameraNames: { [key: string]: string } = {
+      'principal': 'Cámara Principal',
+      'juego': 'Área de Juego',
+      'descanso': 'Área de Descanso'
+    };
+
+    // Simular conexión
+    const loadingAlert = await this.alertCtrl.create({
+      header: '🔄 Conectando...',
+      message: `Conectando con ${cameraNames[cameraType]}`,
+      cssClass: 'loading-alert'
+    });
+    await loadingAlert.present();
+
+    // Simular tiempo de conexión
+    setTimeout(async () => {
+      await loadingAlert.dismiss();
+      
+      const alert = await this.alertCtrl.create({
+        header: '📹 ' + cameraNames[cameraType],
+        message: `
+          <div style="text-align: center; padding: 20px;">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; margin-bottom: 15px;">
+              🎥 Stream en vivo<br>
+              <small style="opacity: 0.8;">Cámara activa</small>
+            </div>
+            <p style="color: #666; font-size: 14px;">Vista en tiempo real de ${cameraNames[cameraType]}</p>
+          </div>
+        `,
+        cssClass: 'camera-stream-alert',
+        buttons: [
+          {
+            text: '📸 Capturar',
+            cssClass: 'capture-button',
+            handler: () => {
+              this.captureFromStream();
+            }
+          },
+          {
+            text: 'Cerrar',
+            role: 'cancel',
+            cssClass: 'close-button'
+          }
+        ]
+      });
+      await alert.present();
+    }, 2000);
+  }
+
+  // Capturar desde stream en vivo
+  async captureFromStream() {
     const alert = await this.alertCtrl.create({
-      header: 'Webcam en Vivo',
-      message: 'Conectando con las cámaras de nuestras instalaciones...',
-      buttons: [
-        {
-          text: 'Cámara Principal',
-          handler: () => {
-            this.showFeatureNotAvailable('Cámara Principal');
-          }
-        },
-        {
-          text: 'Área de Juego',
-          handler: () => {
-            this.showFeatureNotAvailable('Cámara Área de Juego');
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        }
-      ]
+      header: '✅ Captura Realizada',
+      message: '¡Imagen capturada desde la webcam en vivo!',
+      cssClass: 'success-alert',
+      buttons: [{
+        text: 'Excelente',
+        cssClass: 'ok-button'
+      }]
     });
     await alert.present();
   }
@@ -250,47 +330,90 @@ export class WebcamPage implements OnInit {
   }
 
   // Navegación a diferentes páginas
-  openWebCam() {
-    this.router.navigate(['/camera']);
-  }
-
-  scheduleGrooming() {
-    this.router.navigate(['/grooming']);
-  }
-
-  contactVet() {
-    this.router.navigate(['/veterinaria']);
-  }
-
-  goToAdoption() {
-    this.router.navigate(['/adopcion']);
-  }
-
-  openEstancias() {
-    this.router.navigate(['/estancias']);
-  }
-
-  openReservar() {
-    this.router.navigate(['/reservar']);
+  async openWebCam() {
+    const alert = await this.alertCtrl.create({
+      header: '📷 Opciones de Cámara',
+      subHeader: 'Elige una opción para capturar tu foto',
+      cssClass: 'camera-options-alert',
+      buttons: [
+        {
+          text: '📸 Tomar Foto',
+          cssClass: 'camera-button',
+          handler: () => {
+            this.takePicture();
+          }
+        },
+        {
+          text: '🖼️ Subir desde Galería',
+          cssClass: 'gallery-button',
+          handler: () => {
+            this.selectFromGallery();
+          }
+        },
+        {
+          text: '📹 Webcam en Vivo',
+          cssClass: 'live-button',
+          handler: () => {
+            this.openLiveWebcam();
+          }
+        },
+        {
+          text: '❌ Cancelar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
+        }
+      ]
+    });
+    await alert.present();
   }
 
   // Ir a home
   goToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigateByUrl('/home', { replaceUrl: true });
   }
 
-  // Ir a login
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
-
-  // Ir a register
-  goToRegister() {
-    this.router.navigate(['/register']);
-  }
-
-  activateCamera() {
-    console.log('Activating camera...');
-    // Add logic to activate the Ionic camera service here
+  // Mostrar preview de la imagen capturada
+  async showImagePreview() {
+    if (!this.capturedImage) return;
+    
+    const alert = await this.alertCtrl.create({
+      header: '📸 Vista Previa',
+      message: `
+        <div style="text-align: center; padding: 10px;">
+          <img src="${this.capturedImage}" style="max-width: 100%; max-height: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+          <p style="margin-top: 15px; color: #666; font-size: 14px;">Tu foto está lista</p>
+        </div>
+      `,
+      cssClass: 'image-preview-alert',
+      buttons: [
+        {
+          text: '💾 Guardar',
+          cssClass: 'save-button',
+          handler: () => {
+            this.downloadImage();
+          }
+        },
+        {
+          text: '📤 Compartir',
+          cssClass: 'share-button',
+          handler: () => {
+            this.shareImage();
+          }
+        },
+        {
+          text: '🗑️ Eliminar',
+          cssClass: 'delete-button',
+          handler: () => {
+            this.deleteImage();
+          }
+        },
+        {
+          text: 'Cerrar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
+        }
+      ]
+    });
+    await alert.present();
   }
 }

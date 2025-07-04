@@ -22,10 +22,7 @@ export const routes: Routes = [
     path: 'webcam',
     loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
   },
-  {
-    path: 'camera',
-    loadComponent: () => import('./camera/camera.page').then( m => m.CameraPage)
-  },
+
   {
     path: 'grooming',
     loadComponent: () => import('./grooming/grooming.page').then((m) => m.GroomingPage),
@@ -40,10 +37,10 @@ export const routes: Routes = [
   },
   {
     path: 'adopcion',
-    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+    loadComponent: () => import('./adopcion/adopcion.page').then( m => m.AdopcionPage)
   },
   {
     path: 'veterinaria',
-    loadComponent: () => import('./webcam/webcam.page').then( m => m.WebcamPage)
+    loadComponent: () => import('./veterinaria/veterinaria.page').then( m => m.VeterinariaPage)
   },
 ];

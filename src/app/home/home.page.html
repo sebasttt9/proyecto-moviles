@@ -1,20 +1,86 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      <img src="assets/icon/Group.png" alt="Logo" class="header-logo" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="home-content">
+  <!-- Loading overlay -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+  
+  <div class="dashboard-container">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <h1 class="main-title glitch-text gpu-accelerated" data-text="Bienvenido">Bienvenido</h1>
+      <p>¿Qué necesitas hoy para tu mascota?</p>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- Services Grid -->
+    <div class="services-grid">
+      <div class="service-card crystalline neural-network energy-field gpu-accelerated" 
+           #serviceCard 
+           (click)="goToServices()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <path d="M20 35L25 40L40 25" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M30 15V20M30 40V45M15 30H20M40 30H45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Servicios</h3>
+        <p>Web Cam, Grooming, Veterinaria</p>
+      </div>
+
+      <div class="service-card prismatic cyber-glow aurora gpu-accelerated" 
+           #serviceCard 
+           (click)="goToAdoption()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 45C30 45 50 35 50 22C50 15 45 10 38 10C34 10 30 13 30 13S26 10 22 10C15 10 10 15 10 22C10 35 30 45 30 45Z" fill="white" fill-opacity="0.9"/>
+            <circle cx="22" cy="20" r="2" fill="#764ba2"/>
+            <circle cx="38" cy="20" r="2" fill="#764ba2"/>
+          </svg>
+        </div>
+        <h3>Adopción</h3>
+        <p>Encuentra tu nueva mascota</p>
+      </div>
+
+      <div class="service-card holographic magnetic-hover liquid-morph gpu-accelerated" 
+           #serviceCard 
+           (click)="goToStore()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="15" width="40" height="35" rx="3" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <path d="M10 25H50M20 15V10C20 8 22 6 25 6H35C38 6 40 8 40 10V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="25" cy="35" r="2" fill="white"/>
+            <circle cx="35" cy="35" r="2" fill="white"/>
+          </svg>
+        </div>
+        <h3>Tienda</h3>
+        <p>Accesorios y productos</p>
+      </div>
+
+      <div class="service-card glass-deep quantum-ripple hologram-effect gpu-accelerated" 
+           #serviceCard 
+           (click)="goToProfile()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="20" r="12" fill="white" fill-opacity="0.9"/>
+            <path d="M10 50C10 40 18 35 30 35C42 35 50 40 50 50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="30" cy="20" r="8" fill="#667eea"/>
+          </svg>
+        </div>
+        <h3>Perfil</h3>
+        <p>Gestiona tu cuenta</p>
+      </div>
+    </div>
   </div>
 </ion-content>

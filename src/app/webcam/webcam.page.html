@@ -1,137 +1,29 @@
-<ion-toolbar>
-  <ion-title>
-    <img src="assets/icon/Group.png" alt="Logo" class="logo" />
-  </ion-title>
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+        <span class="home-text">Home</span>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/icon/Group.png" alt="Logo" class="logo" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <!-- Hero Section -->
   <section class="hero">
-    <div class="image-container">
-      <img src="assets/icon/seccion 1.png" />
-      <h1>Web Cam <br>& estancia</h1>
-      <p>Mira como se <br>encuentra tu <br>mascota mediante <br>el servicio de<br>llamadas en vivo.</p>
-      <ion-button class="primary" (click)="openWebCam()">Web Cam</ion-button>
-    </div>
-  </section>
-
-  <!-- Grooming Services Section -->
-  <section class="services">
-    <div class="image-container grooming-section">
-      <img src="assets/icon/seccion 3.png" alt="Servicio de Grooming" />
-      <div class="text-overlay">
-        <h2 class="grooming-title">Servicio de Grooming</h2>
-        <p class="grooming-text">
-          Dicen que la mascota<br>
-          se parece a su dueño,<br>
-          por ello nos encargamos<br>
-          de que ellos se vean tan<br>
-          bien como tú.
-        </p>
-        <div class="button-container">
-          <ion-button class="primary" (click)="scheduleGrooming()">Agendar</ion-button>
-        </div>
+    <div class="hero-container">
+      <div class="hero-image">
+        <img src="assets/icon/seccion 1.png" alt="Web Cam" />
+      </div>
+      <div class="hero-content">
+        <h1>Web Cam <br>& estancia</h1>
+        <p>Mira como se encuentra tu mascota mediante el servicio de llamadas en vivo.</p>
+        <ion-button class="primary" (click)="openWebCam()">Web Cam</ion-button>
       </div>
     </div>
   </section>
-
-  <!-- Veterinary Services Section -->
-  <section class="services">
-    <div class="image-container veterinary-section">
-      <img src="assets/icon/seccion 4.png" alt="Atención Veterinaria" />
-      <h2 class="veterinary-title">Atención Veterinaria</h2>
-      <p class="veterinary-text">
-        Si necesitas ayuda<br>
-        profesional,tenemos<br>
-        a los mejores<br>
-        esperando atender<br>
-        a tu mascota.
-      </p>
-      <div class="button-container">
-        <ion-button class="primary" (click)="contactVet()">Contactar</ion-button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Adoption Campaign Section -->
-  <section class="services adoption-section">
-    <h2>Adopta no compres</h2>
-    <div class="image-container">
-      <img src="assets/icon/seccion 7.png" alt="Adopta no compres" class="service-image" />
-      <div class="text-overlay">
-        <p>Demuestra que ellos te importan, bríndales un hogar que amar. Únete a nuestra campaña.</p>
-        <div class="button-container">
-          <ion-button class="primary" (click)="goToAdoption()">Ver más</ion-button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reservation Section -->
-  <section class="services reservation-section">
-    <h2>Te ofrecemos lo mejor</h2>
-    <p>Puedes reservar una estancia para tu mascota, te mantendremos al tanto y podrás verlo cuando quieras y donde estés.</p>
-    <div class="buttons">
-      <ion-button class="primary" (click)="openEstancias()">Estancias</ion-button>
-      <ion-button class="secondary" (click)="openReservar()">Reservar</ion-button>
-    </div>
-  </section>
-
-  <!-- Accessories Section -->
-  <section class="accessories">
-    <h2>¿Buscas accesorios?</h2>
-    <div class="grid horizontal">
-      <div class="item">
-        <img src="assets/icon/plato.png" alt="Accesorio 1" />
-        <h4>PLATOS</h4>
-      </div>
-      <div class="item">
-        <img src="assets/icon/collares.png" alt="Accesorio 2" />
-        <h4>COLLARES</h4>
-      </div>
-      <div class="item">
-        <img src="assets/icon/juguetes.png" alt="Accesorio 3" />
-        <h4>JUGUETES</h4>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pets Section -->
-  <section class="pets">
-    <h2>También vendemos...</h2>
-    <div class="grid centered">
-      <div class="item">
-        <div class="image-with-text">
-          <img src="assets/icon/peces.png" alt="Peces" />
-          <h4 class="image-text">Peces</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="image-with-text">
-          <img src="assets/icon/reptiles.png" alt="Reptiles" />
-          <h4 class="image-text">Reptiles</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="image-with-text">
-          <img src="assets/icon/roedores.png" alt="Roedores" />
-          <h4 class="image-text">Roedores</h4>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="#" class="footer-link">Web cam</a>
-        <a href="#" class="footer-link">Reservar</a>
-        <a href="#" class="footer-link">Tienda</a>
-        <a href="#" class="footer-link">Adopta no compres</a>
-      </div>
-      <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
-    </div>
-  </footer>
-
 </ion-content>

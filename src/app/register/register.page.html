@@ -7,15 +7,15 @@
 </ion-header>
 
 <ion-content class="register-content">
-  <div class="register-container">
-    <div class="register-card">
-      <div class="register-title-section">
+  <div class="register-container container-animate">
+    <div class="register-card animate-fade-scale">
+      <div class="register-title-section stagger-animation">
         <h1>Registrarse</h1>
       </div>
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Nombre y Apellido en la misma fila -->
-        <div class="name-row">
+        <div class="name-row stagger-animation">
           <div class="name-input-container">
             <ion-item class="name-input">
               <ion-label position="floating">Nombre:</ion-label>
@@ -31,7 +31,7 @@
         </div>
 
         <!-- Correo -->
-        <div class="input-container">
+        <div class="input-container stagger-animation">
           <ion-item class="email-input">
             <ion-label position="floating">Correo</ion-label>
             <ion-input type="email" formControlName="email" required></ion-input>
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Contraseña -->
-        <div class="input-container">
+        <div class="input-container stagger-animation">
           <ion-item class="password-input">
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input type="password" formControlName="password" required></ion-input>
@@ -53,7 +53,7 @@
         </div>
 
         <!-- Repetir Contraseña -->
-        <div class="input-container">
+        <div class="input-container stagger-animation">
           <ion-item class="confirm-password-input">
             <ion-label position="floating">Repetir contraseña</ion-label>
             <ion-input type="password" formControlName="confirmPassword" required></ion-input>
@@ -63,14 +63,14 @@
           </ion-text>
         </div>
 
-        <ion-button class="register-button" type="submit" [disabled]="registerForm.invalid">
+        <ion-button class="register-button ripple-effect stagger-animation" type="submit" [disabled]="registerForm.invalid">
           Registrarse
         </ion-button>
       </form>
 
-      <div class="login-section">
+      <div class="login-section stagger-animation">
         <p class="login-text">¿Ya tienes una cuenta?</p>
-        <ion-button class="login-button" (click)="goToLogin()" fill="outline">Iniciar sesión</ion-button>
+        <ion-button class="login-button nav-transition ripple-effect" (click)="goToLogin()" fill="outline">Iniciar sesión</ion-button>
       </div>
     </div>
   </div>

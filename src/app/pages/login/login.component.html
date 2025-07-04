@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content class="login-content">
-  <div class="login-container">
-    <div class="login-card">
-      <div class="login-title-section">
+  <div class="login-container container-animate">
+    <div class="login-card animate-fade-scale">
+      <div class="login-title-section stagger-animation">
         <h1>Iniciar sesión</h1>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="input-container">
+        <div class="input-container stagger-animation">
           <ion-item class="email-input">
             <ion-label position="floating">E-mail:</ion-label>
             <ion-input type="email" formControlName="email" required></ion-input>
@@ -24,7 +24,7 @@
           </ion-text>
         </div>
 
-        <div class="input-container">
+        <div class="input-container stagger-animation">
           <ion-item class="password-input">
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input type="password" formControlName="password" required></ion-input>
@@ -34,17 +34,17 @@
           </ion-text>
         </div>
 
-        <ion-button class="login-button" type="submit" [disabled]="loginForm.invalid">
+        <ion-button class="login-button ripple-effect stagger-animation" type="submit" [disabled]="loginForm.invalid">
           Iniciar
         </ion-button>
       </form>
 
-      <div class="signup-section">
+      <div class="signup-section stagger-animation">
         <p class="signup-text">¿Aún no tienes una cuenta?</p>
         <p class="signup-text">Registrate para comenzar</p>
         
         <!-- Link estilizado como botón -->
-        <a href="/register" class="signup-link">
+        <a href="/register" class="signup-link nav-transition ripple-effect">
           Registrarse
         </a>
       </div>

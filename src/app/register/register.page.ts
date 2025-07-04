@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
@@ -15,6 +15,7 @@ export class RegisterPage implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
+  private ngZone = inject(NgZone);
 
   registerForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(2)]],
@@ -71,6 +72,15 @@ export class RegisterPage implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigateByUrl('/login');
+    console.log('Navegando al login...');
+    this.ngZone.run(() => {
+      this.router.navigateByUrl('/login', { replaceUrl: true }).then(() => {
+        console.log('Navegación completada exitosamente');
+      }).catch((error) => {
+        console.error('Error en navegación:', error);
+        // Fallback usando window.location
+        window.location.href = '/login';
+      });
+    });
   }
 }
