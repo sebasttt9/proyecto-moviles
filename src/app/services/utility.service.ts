@@ -22,19 +22,28 @@ export class UtilityService {
   // Navigation methods
   async navigateTo(path: string): Promise<void> {
     try {
-      await this.router.navigate([path]);
+      await this.router.navigateByUrl(path, { replaceUrl: true });
     } catch (error) {
       this.handleError(error, 'Navigation failed');
     }
   }
 
   async goToHome(): Promise<void> {
-    await this.navigateTo('/home');
+    try {
+      await this.router.navigateByUrl('/home', { replaceUrl: true });
+    } catch (error) {
+      this.handleError(error, 'Navigation to home failed');
+    }
   }
 
   async goBack(): Promise<void> {
     try {
-      window.history.back();
+      // Try to go back in history, but if no previous page, go to home
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        await this.goToHome();
+      }
     } catch (error) {
       await this.goToHome();
     }
