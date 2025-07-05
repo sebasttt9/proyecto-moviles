@@ -1,0 +1,358 @@
+<app-navigation-header 
+  title="Configuración" 
+  [showHomeButton]="true"
+  [endButtons]="true">
+  <ion-button slot="end" (click)="resetAllSettings()" fill="clear">
+    <ion-icon name="refresh" color="light"></ion-icon>
+  </ion-button>
+</app-navigation-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Configuración</h1>
+    <p>Personaliza tu experiencia en PetCare</p>
+  </div>
+
+  <!-- Segments -->
+  <ion-segment 
+    [(ngModel)]="selectedSegment" 
+    (ionChange)="segmentChanged($event)"
+    class="custom-segment">
+    <ion-segment-button value="notifications">
+      <ion-label>Notificaciones</ion-label>
+      <ion-icon name="notifications"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="privacy">
+      <ion-label>Privacidad</ion-label>
+      <ion-icon name="shield-checkmark"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="appearance">
+      <ion-label>Apariencia</ion-label>
+      <ion-icon name="color-palette"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="account">
+      <ion-label>Cuenta</ion-label>
+      <ion-icon name="person"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Notifications Settings -->
+  <div *ngIf="selectedSegment === 'notifications'" class="settings-section">
+    <div class="section-header">
+      <ion-icon name="notifications" color="primary"></ion-icon>
+      <h2>Notificaciones</h2>
+    </div>
+
+    <div class="settings-list">
+      <ion-item>
+        <ion-label>
+          <h3>Notificaciones Push</h3>
+          <p>Recibe notificaciones en tu dispositivo</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.notifications.push"
+          (ionChange)="onNotificationToggle('push')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Notificaciones por Email</h3>
+          <p>Recibe notificaciones en tu correo</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.notifications.email"
+          (ionChange)="onNotificationToggle('email')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Notificaciones SMS</h3>
+          <p>Recibe notificaciones por mensaje de texto</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.notifications.sms"
+          (ionChange)="onNotificationToggle('sms')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <div class="subsection">
+        <h4>Recordatorios</h4>
+        
+        <ion-item>
+          <ion-label>
+            <h3>Recordatorios de Citas</h3>
+            <p>Te recordamos tus citas veterinarias</p>
+          </ion-label>
+          <ion-toggle 
+            [(ngModel)]="settings.notifications.appointmentReminders"
+            (ionChange)="onNotificationToggle('appointmentReminders')"
+            slot="end">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <h3>Recordatorios de Vacunas</h3>
+            <p>Te recordamos las vacunas de tus mascotas</p>
+          </ion-label>
+          <ion-toggle 
+            [(ngModel)]="settings.notifications.vaccinationReminders"
+            (ionChange)="onNotificationToggle('vaccinationReminders')"
+            slot="end">
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <h3>Promociones</h3>
+            <p>Recibe ofertas y promociones especiales</p>
+          </ion-label>
+          <ion-toggle 
+            [(ngModel)]="settings.notifications.promotions"
+            (ionChange)="onNotificationToggle('promotions')"
+            slot="end">
+          </ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Settings -->
+  <div *ngIf="selectedSegment === 'privacy'" class="settings-section">
+    <div class="section-header">
+      <ion-icon name="shield-checkmark" color="primary"></ion-icon>
+      <h2>Privacidad</h2>
+    </div>
+
+    <div class="settings-list">
+      <ion-item>
+        <ion-label>
+          <h3>Compartir datos con veterinarios</h3>
+          <p>Permite que los veterinarios accedan a la información de tus mascotas</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.privacy.shareDataWithVets"
+          (ionChange)="onPrivacyToggle('shareDataWithVets')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Permitir análisis</h3>
+          <p>Ayúdanos a mejorar la app compartiendo datos de uso anónimos</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.privacy.allowAnalytics"
+          (ionChange)="onPrivacyToggle('allowAnalytics')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Perfil público</h3>
+          <p>Permite que otros usuarios vean tu perfil básico</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.privacy.publicProfile"
+          (ionChange)="onPrivacyToggle('publicProfile')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+    </div>
+
+    <div class="privacy-actions">
+      <ion-button fill="outline" (click)="showPrivacyPolicy()">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        Ver Política de Privacidad
+      </ion-button>
+      
+      <ion-button fill="outline" (click)="showTermsOfService()">
+        <ion-icon name="shield-outline" slot="start"></ion-icon>
+        Términos de Servicio
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Appearance Settings -->
+  <div *ngIf="selectedSegment === 'appearance'" class="settings-section">
+    <div class="section-header">
+      <ion-icon name="color-palette" color="primary"></ion-icon>
+      <h2>Apariencia</h2>
+    </div>
+
+    <div class="settings-list">
+      <ion-item>
+        <ion-label>
+          <h3>Tema</h3>
+          <p>Selecciona el tema de la aplicación</p>
+        </ion-label>
+        <ion-select 
+          [(ngModel)]="settings.appearance.theme"
+          (ionChange)="onThemeChange($event)"
+          slot="end"
+          interface="popover">
+          <ion-select-option *ngFor="let theme of themes" [value]="theme.value">
+            {{ theme.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Idioma</h3>
+          <p>Selecciona el idioma de la aplicación</p>
+        </ion-label>
+        <ion-select 
+          [(ngModel)]="settings.appearance.language"
+          (ionChange)="onLanguageChange($event)"
+          slot="end"
+          interface="popover">
+          <ion-select-option *ngFor="let language of languages" [value]="language.value">
+            {{ language.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Tamaño de fuente</h3>
+          <p>Ajusta el tamaño del texto</p>
+        </ion-label>
+        <ion-select 
+          [(ngModel)]="settings.appearance.fontSize"
+          (ionChange)="onFontSizeChange($event)"
+          slot="end"
+          interface="popover">
+          <ion-select-option *ngFor="let fontSize of fontSizes" [value]="fontSize.value">
+            {{ fontSize.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+
+  <!-- Account Settings -->
+  <div *ngIf="selectedSegment === 'account'" class="settings-section">
+    <div class="section-header">
+      <ion-icon name="person" color="primary"></ion-icon>
+      <h2>Cuenta</h2>
+    </div>
+
+    <div class="settings-list">
+      <ion-item>
+        <ion-label>
+          <h3>Autenticación de dos factores</h3>
+          <p>Agrega una capa extra de seguridad</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.account.twoFactorAuth"
+          (ionChange)="onAccountToggle('twoFactorAuth')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Autenticación biométrica</h3>
+          <p>Usa tu huella dactilar o Face ID</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.account.biometricAuth"
+          (ionChange)="onAccountToggle('biometricAuth')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Cerrar sesión automáticamente</h3>
+          <p>Cierra la sesión después de un tiempo de inactividad</p>
+        </ion-label>
+        <ion-toggle 
+          [(ngModel)]="settings.account.autoLogout"
+          (ionChange)="onAccountToggle('autoLogout')"
+          slot="end">
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="settings.account.autoLogout">
+        <ion-label>
+          <h3>Tiempo de inactividad</h3>
+          <p>Tiempo antes de cerrar sesión automáticamente</p>
+        </ion-label>
+        <ion-select 
+          [(ngModel)]="settings.account.autoLogoutTime"
+          (ionChange)="onAutoLogoutTimeChange($event)"
+          slot="end"
+          interface="popover">
+          <ion-select-option *ngFor="let time of autoLogoutTimes" [value]="time.value">
+            {{ time.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+
+  <!-- App Management -->
+  <div class="app-management">
+    <div class="section-header">
+      <ion-icon name="cog" color="primary"></ion-icon>
+      <h2>Gestión de la App</h2>
+    </div>
+
+    <div class="management-actions">
+      <ion-button fill="outline" (click)="exportSettings()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        Exportar Configuración
+      </ion-button>
+      
+      <ion-button fill="outline" (click)="importSettings()">
+        <ion-icon name="cloud-upload" slot="start"></ion-icon>
+        Importar Configuración
+      </ion-button>
+      
+      <ion-button fill="outline" color="warning" (click)="resetAllSettings()">
+        <ion-icon name="refresh" slot="start"></ion-icon>
+        Restablecer Todo
+      </ion-button>
+      
+      <ion-button fill="outline" color="danger" (click)="clearAppData()">
+        <ion-icon name="trash" slot="start"></ion-icon>
+        Borrar Datos de la App
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="about-section">
+    <div class="section-header">
+      <ion-icon name="information-circle" color="primary"></ion-icon>
+      <h2>Acerca de</h2>
+    </div>
+
+    <div class="about-actions">
+      <ion-button fill="outline" (click)="showAbout()">
+        <ion-icon name="information-circle" slot="start"></ion-icon>
+        Acerca de PetCare
+      </ion-button>
+      
+      <ion-button fill="outline" (click)="showPrivacyPolicy()">
+        <ion-icon name="shield-checkmark" slot="start"></ion-icon>
+        Política de Privacidad
+      </ion-button>
+      
+      <ion-button fill="outline" (click)="showTermsOfService()">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        Términos de Servicio
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

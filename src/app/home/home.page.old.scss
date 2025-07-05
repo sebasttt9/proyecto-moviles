@@ -49,6 +49,23 @@ ion-content {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
+ion-toolbar {
+  --background: #007bff !important;
+  
+  ion-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .header-logo {
+      max-height: 40px;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
 .dashboard-container {
   padding: 20px;
   padding-bottom: 40px;

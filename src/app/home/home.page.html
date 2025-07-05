@@ -1,50 +1,87 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <img src="assets/icon/Group.png" alt="Logo" class="header-logo" />
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-navigation-header 
+  [showLogo]="true" 
+  [showBackButton]="false" 
+  [showHomeButton]="false" 
+  [endButtons]="true">
+  <ion-buttons slot="end">
+    <ion-button fill="clear" (click)="logout()">
+      <ion-icon name="log-out" color="light"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</app-navigation-header>
 
 <ion-content class="home-content">
-  <!-- Loading overlay -->
-  <div class="loading-overlay" *ngIf="isLoading">
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading-overlay">
     <div class="loading-spinner"></div>
   </div>
   
-  <div class="dashboard-container">
+  <div class="dashboard-container" *ngIf="!isLoading">
     <!-- Welcome Section -->
     <div class="welcome-section">
-      <h1 class="main-title glitch-text gpu-accelerated" data-text="Bienvenido">Bienvenido</h1>
+      <h1>¡Hola, {{ userEmail }}!</h1>
       <p>¿Qué necesitas hoy para tu mascota?</p>
     </div>
 
-    <!-- Services Grid -->
+    <!-- Services Grid with Original Effects -->
     <div class="services-grid">
-      <div class="service-card crystalline neural-network energy-field gpu-accelerated" 
+      <div class="service-card holographic magnetic-hover liquid-morph gpu-accelerated" 
            #serviceCard 
-           (click)="goToServices()"
+           (click)="navigateToPage('/webcam')"
            style="cursor: pointer;">
         <div class="service-icon">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="30" r="28" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
-            <path d="M20 35L25 40L40 25" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M30 15V20M30 40V45M15 30H20M40 30H45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <rect x="10" y="15" width="40" height="30" rx="5" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <circle cx="30" cy="30" r="8" fill="white" fill-opacity="0.9"/>
+            <circle cx="30" cy="30" r="4" fill="#667eea"/>
+            <path d="M25 10L35 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Servicios</h3>
-        <p>Web Cam, Grooming, Veterinaria</p>
+        <h3>Webcam</h3>
+        <p>Monitorea tu mascota</p>
+      </div>
+
+      <div class="service-card glass-deep quantum-ripple hologram-effect gpu-accelerated" 
+           #serviceCard 
+           (click)="navigateToPage('/veterinaria')"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 10V50M10 30H50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="30" cy="30" r="15" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <path d="M25 25L35 35M35 25L25 35" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Veterinaria</h3>
+        <p>Citas y consultas</p>
+      </div>
+
+      <div class="service-card crystalline neural-network energy-field gpu-accelerated" 
+           #serviceCard 
+           (click)="navigateToPage('/grooming')"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 25C15 20 20 15 30 15C40 15 45 20 45 25C45 30 40 35 30 35C20 35 15 30 15 25Z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <circle cx="25" cy="25" r="2" fill="white"/>
+            <circle cx="35" cy="25" r="2" fill="white"/>
+            <path d="M25 32C25 32 27.5 35 30 35C32.5 35 35 32 35 32" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M30 40L30 50M25 45L35 45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Peluquería</h3>
+        <p>Estética y cuidado</p>
       </div>
 
       <div class="service-card prismatic cyber-glow aurora gpu-accelerated" 
            #serviceCard 
-           (click)="goToAdoption()"
+           (click)="navigateToPage('/adopcion')"
            style="cursor: pointer;">
         <div class="service-icon">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M30 45C30 45 50 35 50 22C50 15 45 10 38 10C34 10 30 13 30 13S26 10 22 10C15 10 10 15 10 22C10 35 30 45 30 45Z" fill="white" fill-opacity="0.9"/>
-            <circle cx="22" cy="20" r="2" fill="#764ba2"/>
-            <circle cx="38" cy="20" r="2" fill="#764ba2"/>
+            <path d="M30 45C35 40 50 25 50 15C50 10 45 5 40 5C35 5 30 10 30 15C30 10 25 5 20 5C15 5 10 10 10 15C10 25 25 40 30 45Z" fill="white" fill-opacity="0.9"/>
+            <circle cx="22" cy="18" r="2" fill="#667eea"/>
+            <circle cx="38" cy="18" r="2" fill="#667eea"/>
           </svg>
         </div>
         <h3>Adopción</h3>
@@ -53,18 +90,16 @@
 
       <div class="service-card holographic magnetic-hover liquid-morph gpu-accelerated" 
            #serviceCard 
-           (click)="goToStore()"
+           (click)="goToMyPets()"
            style="cursor: pointer;">
         <div class="service-icon">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="15" width="40" height="35" rx="3" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
-            <path d="M10 25H50M20 15V10C20 8 22 6 25 6H35C38 6 40 8 40 10V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="25" cy="35" r="2" fill="white"/>
-            <circle cx="35" cy="35" r="2" fill="white"/>
+            <path d="M25 20C25 18 26 15 30 15C34 15 35 18 35 20M20 25C18 25 15 26 15 30C15 34 18 35 20 35M40 25C42 25 45 26 45 30C45 34 42 35 40 35M30 40C30 42 29 45 25 45C21 45 20 42 20 40M30 40C30 42 31 45 35 45C39 45 40 42 40 40" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="30" cy="30" r="8" fill="white" fill-opacity="0.9"/>
           </svg>
         </div>
-        <h3>Tienda</h3>
-        <p>Accesorios y productos</p>
+        <h3>Mis Mascotas</h3>
+        <p>Gestiona tus mascotas</p>
       </div>
 
       <div class="service-card glass-deep quantum-ripple hologram-effect gpu-accelerated" 
@@ -81,6 +116,66 @@
         <h3>Perfil</h3>
         <p>Gestiona tu cuenta</p>
       </div>
+
+      <div class="service-card crystalline neural-network energy-field gpu-accelerated" 
+           #serviceCard 
+           (click)="goToAppointmentHistory()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="10" width="30" height="40" rx="3" fill="white" fill-opacity="0.2" stroke="white" stroke-width="2"/>
+            <path d="M25 5V15M35 5V15M15 20H45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="25" cy="30" r="2" fill="white"/>
+            <circle cx="35" cy="30" r="2" fill="white"/>
+            <circle cx="25" cy="40" r="2" fill="white"/>
+          </svg>
+        </div>
+        <h3>Historial</h3>
+        <p>Citas y servicios</p>
+      </div>
+
+      <div class="service-card prismatic cyber-glow aurora gpu-accelerated" 
+           #serviceCard 
+           (click)="goToSettings()"
+           style="cursor: pointer;">
+        <div class="service-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="8" fill="white" fill-opacity="0.9"/>
+            <path d="M30 10V15M30 45V50M50 30H45M15 30H10M42.5 17.5L39.5 20.5M20.5 39.5L17.5 42.5M42.5 42.5L39.5 39.5M20.5 20.5L17.5 17.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Configuración</h3>
+        <p>Ajustes de la app</p>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2>Acciones Rápidas</h2>
+      <div class="actions-row">
+        <ion-button 
+          class="action-btn" 
+          fill="outline" 
+          (click)="callEmergencyVet()">
+          <ion-icon name="call" slot="start"></ion-icon>
+          Emergencia
+        </ion-button>
+        <ion-button 
+          class="action-btn" 
+          fill="outline" 
+          (click)="goToAppointmentHistory()">
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          Historial
+        </ion-button>
+        <ion-button 
+          class="action-btn" 
+          fill="outline" 
+          (click)="goToSettings()">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          Configuración
+        </ion-button>
+      </div>
     </div>
   </div>
 </ion-content>
+

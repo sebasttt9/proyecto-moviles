@@ -1,5 +1,8 @@
 // === GLOBAL STYLES AND IMPORTS ===
 
+// Import mobile-optimized styles
+@use './app/styles/mobile-optimized.scss';
+
 // === GLOBAL PARTICLE SYSTEM STYLES ===
 // Enhanced particle types with improved visibility
 .particle-blue {
@@ -193,27 +196,8 @@ ion-modal {
     --background: transparent !important;
     background: transparent !important;
   }
-  
-  ion-header {
-    background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(15px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  }
-  
-  ion-toolbar {
-    --background: transparent !important;
-    background: transparent !important;
-  }
-  
-  ion-title {
-    color: white !important;
-    font-weight: 600 !important;
-  }
-  
-  ion-button {
-    --color: white !important;
-  }
 }
+
 
 // === GLOBAL ANIMATION PERFORMANCE ===
 * {

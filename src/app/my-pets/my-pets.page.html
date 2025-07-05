@@ -1,0 +1,255 @@
+<app-navigation-header 
+  title="Mis Mascotas" 
+  [showHomeButton]="true"
+  [endButtons]="true">
+  <ion-button slot="end" (click)="addPet()" fill="clear">
+    <ion-icon name="add" color="light"></ion-icon>
+  </ion-button>
+</app-navigation-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Mis Mascotas</h1>
+    <p>Gestiona la información de tus compañeros peludos</p>
+  </div>
+
+  <!-- Segments -->
+  <ion-segment 
+    [(ngModel)]="selectedSegment" 
+    (ionChange)="segmentChanged($event)"
+    class="custom-segment">
+    <ion-segment-button value="pets">
+      <ion-label>Mascotas</ion-label>
+      <ion-icon name="paw"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="vaccines">
+      <ion-label>Vacunas</ion-label>
+      <ion-icon name="medical"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando mascotas...</p>
+  </div>
+
+  <!-- Pet List -->
+  <div *ngIf="!isLoading && selectedSegment === 'pets'" class="pets-container">
+    <div *ngIf="pets.length === 0" class="empty-state">
+      <ion-icon name="paw-outline" class="empty-icon"></ion-icon>
+      <h2>No tienes mascotas registradas</h2>
+      <p>Agrega tu primera mascota para comenzar</p>
+      <ion-button fill="solid" (click)="addPet()">
+        <ion-icon name="add" slot="start"></ion-icon>
+        Agregar Mascota
+      </ion-button>
+    </div>
+
+    <div *ngIf="pets.length > 0" class="pets-grid">
+      <div *ngFor="let pet of pets" class="pet-card" (click)="showPetDetails(pet)">
+        <div class="pet-image">
+          <img [src]="pet.profileImage || '/assets/pets/default-pet.png'" [alt]="pet.name">
+          <div class="pet-species-badge">
+            <ion-icon [name]="getPetIcon(pet.species)"></ion-icon>
+          </div>
+        </div>
+        
+        <div class="pet-info">
+          <h3>{{ pet.name }}</h3>
+          <p class="pet-breed">{{ pet.breed }}</p>
+          <p class="pet-age">{{ getPetAge(pet.age) }}</p>
+          
+          <div class="pet-stats">
+            <div class="stat">
+              <ion-icon name="scale-outline"></ion-icon>
+              <span>{{ pet.weight }} kg</span>
+            </div>
+            <div class="stat">
+              <ion-icon name="color-palette-outline"></ion-icon>
+              <span>{{ pet.color }}</span>
+            </div>
+          </div>
+
+          <div class="vaccination-status" [class]="getVaccinationStatus(pet)">
+            <ion-icon name="medical-outline"></ion-icon>
+            <span *ngIf="getVaccinationStatus(pet) === 'up-to-date'">Al día</span>
+            <span *ngIf="getVaccinationStatus(pet) === 'upcoming'">Próxima</span>
+            <span *ngIf="getVaccinationStatus(pet) === 'overdue'">Atrasada</span>
+          </div>
+        </div>
+
+        <div class="pet-actions">
+          <ion-button fill="clear" size="small" (click)="editPet(pet); $event.stopPropagation()">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" size="small" color="danger" (click)="deletePet(pet); $event.stopPropagation()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vaccination Summary -->
+  <div *ngIf="!isLoading && selectedSegment === 'vaccines'" class="vaccines-container">
+    <div *ngIf="pets.length === 0" class="empty-state">
+      <ion-icon name="medical-outline" class="empty-icon"></ion-icon>
+      <h2>No hay información de vacunas</h2>
+      <p>Agrega mascotas para gestionar sus vacunas</p>
+    </div>
+
+    <div *ngIf="pets.length > 0" class="vaccines-list">
+      <div *ngFor="let pet of pets" class="pet-vaccine-section">
+        <h3>{{ pet.name }}</h3>
+        <div class="vaccine-cards">
+          <div *ngIf="pet.vaccinations.length === 0" class="no-vaccines">
+            <p>No hay vacunas registradas</p>
+            <ion-button fill="outline" size="small" (click)="addVaccination(pet)">
+              <ion-icon name="add" slot="start"></ion-icon>
+              Agregar Vacuna
+            </ion-button>
+          </div>
+          
+          <div *ngFor="let vaccination of pet.vaccinations" class="vaccine-card">
+            <div class="vaccine-info">
+              <h4>{{ vaccination.name }}</h4>
+              <p class="vaccine-date">{{ vaccination.date.toLocaleDateString() }}</p>
+              <p class="vaccine-vet">{{ vaccination.veterinarian }}</p>
+            </div>
+            <div class="vaccine-status">
+              <ion-icon 
+                [name]="getVaccinationIcon(vaccination)"
+                [color]="getVaccinationColor(vaccination)">
+              </ion-icon>
+            </div>
+          </div>
+        </div>
+        
+        <ion-button 
+          fill="outline" 
+          size="small" 
+          (click)="showVaccinationDetails(pet)"
+          class="view-all-vaccines">
+          Ver todas las vacunas
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Pet Form -->
+  <div *ngIf="showAddForm" class="form-overlay">
+    <div class="form-container">
+      <div class="form-header">
+        <h2>{{ editingPet ? 'Editar Mascota' : 'Agregar Mascota' }}</h2>
+        <ion-button fill="clear" (click)="cancelForm()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </div>
+
+      <form class="pet-form">
+        <ion-item>
+          <ion-label position="stacked">Nombre *</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.name" 
+            name="name"
+            placeholder="Nombre de la mascota"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Especie *</ion-label>
+          <ion-select [(ngModel)]="petForm.species" name="species" required>
+            <ion-select-option value="dog">Perro</ion-select-option>
+            <ion-select-option value="cat">Gato</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Raza *</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.breed" 
+            name="breed"
+            placeholder="Raza de la mascota"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Edad (años) *</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.age" 
+            name="age"
+            type="number"
+            placeholder="Edad en años"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Género *</ion-label>
+          <ion-select [(ngModel)]="petForm.gender" name="gender" required>
+            <ion-select-option value="male">Macho</ion-select-option>
+            <ion-select-option value="female">Hembra</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Peso (kg)</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.weight" 
+            name="weight"
+            type="number"
+            placeholder="Peso en kilogramos">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Color</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.color" 
+            name="color"
+            placeholder="Color de la mascota">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Microchip</ion-label>
+          <ion-input 
+            [(ngModel)]="petForm.microchip" 
+            name="microchip"
+            placeholder="Número de microchip">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Notas médicas</ion-label>
+          <ion-textarea 
+            [(ngModel)]="petForm.medicalNotes" 
+            name="medicalNotes"
+            placeholder="Alergias, condiciones médicas, etc."
+            rows="3">
+          </ion-textarea>
+        </ion-item>
+
+        <div class="form-actions">
+          <ion-button 
+            fill="outline" 
+            (click)="cancelForm()"
+            [disabled]="isLoading">
+            Cancelar
+          </ion-button>
+          <ion-button 
+            fill="solid" 
+            (click)="savePet()"
+            [disabled]="isLoading">
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            {{ editingPet ? 'Actualizar' : 'Guardar' }}
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

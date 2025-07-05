@@ -1,0 +1,178 @@
+<app-navigation-header title="Historial de Citas"></app-navigation-header>
+
+<ion-content>
+  <div class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Historial de Citas</h1>
+        <p>Revisa todas tus citas pasadas y próximas</p>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.total}}</h3>
+              <p>Total de Citas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.completed}}</h3>
+              <p>Completadas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="time-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.pending}}</h3>
+              <p>Pendientes</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.cancelled}}</h3>
+              <p>Canceladas</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+          <h2>Filtrar Citas</h2>
+          <div class="filter-buttons">
+            <ion-button 
+              class="filter-btn"
+              [class.active]="selectedFilter === 'todas'"
+              (click)="filterAppointments('todas')">
+              Todas
+            </ion-button>
+            <ion-button 
+              class="filter-btn"
+              [class.active]="selectedFilter === 'veterinaria'"
+              (click)="filterAppointments('veterinaria')">
+              <ion-icon name="medical-outline"></ion-icon>
+              Veterinaria
+            </ion-button>
+            <ion-button 
+              class="filter-btn"
+              [class.active]="selectedFilter === 'grooming'"
+              (click)="filterAppointments('grooming')">
+              <ion-icon name="cut-outline"></ion-icon>
+              Grooming
+            </ion-button>
+            <ion-button 
+              class="filter-btn"
+              [class.active]="selectedFilter === 'pendientes'"
+              (click)="filterAppointments('pendientes')">
+              Pendientes
+            </ion-button>
+            <ion-button 
+              class="filter-btn"
+              [class.active]="selectedFilter === 'completadas'"
+              (click)="filterAppointments('completadas')">
+              Completadas
+            </ion-button>
+          </div>
+        </div>
+        
+        <!-- Appointments List -->
+        <div class="appointments-section">
+          <h2>Citas ({{filteredAppointments.length}})</h2>
+          <div class="appointments-list" *ngIf="filteredAppointments.length > 0">
+            <div 
+              class="appointment-card" 
+              *ngFor="let appointment of filteredAppointments"
+              (click)="showAppointmentDetails(appointment)">
+              
+              <div class="appointment-header">
+                <div class="appointment-type">
+                  <ion-icon [name]="getTypeIcon(appointment.type)"></ion-icon>
+                  <span class="type-text">{{appointment.type === 'veterinaria' ? 'Veterinaria' : 'Grooming'}}</span>
+                </div>
+                <ion-chip [color]="getStatusColor(appointment.status)" class="status-chip">
+                  {{getStatusText(appointment.status)}}
+                </ion-chip>
+              </div>
+              
+              <div class="appointment-content">
+                <h3>{{appointment.serviceName}}</h3>
+                <div class="appointment-details">
+                  <div class="detail-item">
+                    <ion-icon name="paw-outline"></ion-icon>
+                    <span>{{appointment.petName}}</span>
+                  </div>
+                  <div class="detail-item">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <span>{{formatDate(appointment.date)}}</span>
+                  </div>
+                  <div class="detail-item">
+                    <ion-icon name="time-outline"></ion-icon>
+                    <span>{{appointment.time}}</span>
+                  </div>
+                  <div class="detail-item">
+                    <ion-icon name="card-outline"></ion-icon>
+                    <span>{{appointment.price}}</span>
+                  </div>
+                </div>
+                
+                <div class="professional-info" *ngIf="appointment.veterinarian || appointment.groomer">
+                  <ion-icon name="person-outline"></ion-icon>
+                  <span>{{appointment.veterinarian || appointment.groomer}}</span>
+                </div>
+              </div>
+              
+              <div class="appointment-actions" *ngIf="appointment.status === 'pendiente' || appointment.status === 'confirmada'">
+                <ion-button 
+                  fill="clear" 
+                  size="small" 
+                  color="danger"
+                  (click)="cancelAppointment(appointment); $event.stopPropagation()">
+                  <ion-icon name="close-outline"></ion-icon>
+                  Cancelar
+                </ion-button>
+              </div>
+              
+              <div class="appointment-arrow">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="empty-state" *ngIf="filteredAppointments.length === 0">
+            <ion-icon name="calendar-outline" class="empty-icon"></ion-icon>
+            <h3>No hay citas</h3>
+            <p>No tienes citas en esta categoría</p>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <ion-button class="action-btn primary" (click)="goToVeterinaria()">
+            <ion-icon name="medical-outline"></ion-icon>
+            Nueva Cita Veterinaria
+          </ion-button>
+          
+          <ion-button class="action-btn secondary" (click)="goToGrooming()">
+            <ion-icon name="cut-outline"></ion-icon>
+            Nueva Cita Grooming
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

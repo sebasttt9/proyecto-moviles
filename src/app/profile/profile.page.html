@@ -1,0 +1,293 @@
+<app-navigation-header title="Mi Perfil"></app-navigation-header>
+
+<ion-content>
+  <div class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-image-container">
+            <img [src]="userProfile.profileImage" alt="Foto de perfil" class="profile-image">
+            <ion-button 
+              class="change-photo-btn" 
+              fill="clear" 
+              (click)="changeProfileImage()"
+              *ngIf="!isEditing">
+              <ion-icon name="camera-outline"></ion-icon>
+            </ion-button>
+          </div>
+          
+          <div class="profile-info">
+            <h1>{{userProfile.firstName}} {{userProfile.lastName}}</h1>
+            <p class="member-since">Miembro desde {{getMembershipDuration()}}</p>
+            <div class="profile-badges">
+              <ion-chip color="primary">
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-label>Cliente Premium</ion-label>
+              </ion-chip>
+              <ion-chip color="success">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <ion-label>Verificado</ion-label>
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="paw-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.totalPets}}</h3>
+              <p>Mascotas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.completedAppointments}}</h3>
+              <p>Citas Completadas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.upcomingAppointments}}</h3>
+              <p>Próximas Citas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="gift-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.loyaltyPoints}}</h3>
+              <p>Puntos de Lealtad</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Profile Form -->
+        <div class="profile-form-section">
+          <div class="section-header">
+            <h2>Información Personal</h2>
+            <ion-button 
+              class="edit-btn" 
+              fill="clear" 
+              (click)="toggleEdit()"
+              *ngIf="!isEditing">
+              <ion-icon name="create-outline"></ion-icon>
+              Editar
+            </ion-button>
+          </div>
+          
+          <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" *ngIf="isEditing">
+            <div class="form-grid">
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input formControlName="firstName" type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('firstName')">
+                  <p>{{getFieldError('firstName')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Apellido</ion-label>
+                  <ion-input formControlName="lastName" type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('lastName')">
+                  <p>{{getFieldError('lastName')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input formControlName="email" type="email"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('email')">
+                  <p>{{getFieldError('email')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Teléfono</ion-label>
+                  <ion-input formControlName="phone" type="tel"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('phone')">
+                  <p>{{getFieldError('phone')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group full-width">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Dirección</ion-label>
+                  <ion-input formControlName="address" type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('address')">
+                  <p>{{getFieldError('address')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Ciudad</ion-label>
+                  <ion-input formControlName="city" type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('city')">
+                  <p>{{getFieldError('city')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Contacto de Emergencia</ion-label>
+                  <ion-input formControlName="emergencyContact" type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('emergencyContact')">
+                  <p>{{getFieldError('emergencyContact')}}</p>
+                </ion-text>
+              </div>
+              
+              <div class="form-group">
+                <ion-item class="custom-input">
+                  <ion-label position="floating">Teléfono de Emergencia</ion-label>
+                  <ion-input formControlName="emergencyPhone" type="tel"></ion-input>
+                </ion-item>
+                <ion-text color="danger" *ngIf="getFieldError('emergencyPhone')">
+                  <p>{{getFieldError('emergencyPhone')}}</p>
+                </ion-text>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <ion-button 
+                class="action-btn secondary" 
+                type="button" 
+                (click)="toggleEdit()">
+                <ion-icon name="close-outline"></ion-icon>
+                Cancelar
+              </ion-button>
+              
+              <ion-button 
+                class="action-btn primary" 
+                type="submit" 
+                [disabled]="profileForm.invalid">
+                <ion-icon name="checkmark-outline"></ion-icon>
+                Guardar
+              </ion-button>
+            </div>
+          </form>
+          
+          <!-- Read-only view -->
+          <div class="profile-info-grid" *ngIf="!isEditing">
+            <div class="info-item">
+              <label>Nombre Completo</label>
+              <span>{{userProfile.firstName}} {{userProfile.lastName}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Email</label>
+              <span>{{userProfile.email}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Teléfono</label>
+              <span>{{userProfile.phone}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Dirección</label>
+              <span>{{userProfile.address}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Ciudad</label>
+              <span>{{userProfile.city}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Contacto de Emergencia</label>
+              <span>{{userProfile.emergencyContact}}</span>
+            </div>
+            
+            <div class="info-item">
+              <label>Teléfono de Emergencia</label>
+              <span>{{userProfile.emergencyPhone}}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Favorite Services -->
+        <div class="favorite-services-section" *ngIf="!isEditing">
+          <h2>Servicios Favoritos</h2>
+          <div class="services-chips">
+            <ion-chip *ngFor="let service of userProfile.favoriteServices" color="primary">
+              <ion-icon name="heart-outline"></ion-icon>
+              <ion-label>{{service}}</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions" *ngIf="!isEditing">
+          <ion-button class="action-btn secondary" (click)="goToMyPets()">
+            <ion-icon name="paw-outline"></ion-icon>
+            Mis Mascotas
+          </ion-button>
+          
+          <ion-button class="action-btn secondary" (click)="goToAppointmentHistory()">
+            <ion-icon name="calendar-outline"></ion-icon>
+            Historial de Citas
+          </ion-button>
+        </div>
+        
+        <!-- Account Settings -->
+        <div class="account-settings" *ngIf="!isEditing">
+          <h2>Configuración de Cuenta</h2>
+          <div class="settings-list">
+            <ion-button 
+              class="setting-btn" 
+              fill="clear" 
+              (click)="changePassword()">
+              <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+              <span>Cambiar Contraseña</span>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-button>
+            
+            <ion-button 
+              class="setting-btn logout-btn" 
+              fill="clear" 
+              (click)="logout()">
+              <ion-icon name="log-out-outline" slot="start"></ion-icon>
+              <span>Cerrar Sesión</span>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-button>
+            
+            <ion-button 
+              class="setting-btn danger-btn" 
+              fill="clear" 
+              (click)="deleteAccount()">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              <span>Eliminar Cuenta</span>
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

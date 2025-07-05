@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, AlertController, NavController, ModalController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NavigationHeaderComponent } from '../components/navigation-header.component';
+import { UtilityService } from '../services/utility.service';
 
 // Interfaces basadas en el esquema de BD
 interface User {
@@ -51,11 +53,12 @@ interface CalendarDay {
   templateUrl: './veterinaria.page.html',
   styleUrls: ['./veterinaria.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, FormsModule]
+  imports: [IonicModule, CommonModule, RouterModule, FormsModule, NavigationHeaderComponent]
 })
 export class VeterinariaPage implements OnInit {
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
+  private utilityService = inject(UtilityService);
   private navCtrl = inject(NavController);
   private modalCtrl = inject(ModalController);
 
@@ -550,6 +553,6 @@ export class VeterinariaPage implements OnInit {
 
   // Ir a home
   goToHome() {
-    this.router.navigateByUrl('/home', { replaceUrl: true });
+    this.utilityService.goToHome();
   }
 }

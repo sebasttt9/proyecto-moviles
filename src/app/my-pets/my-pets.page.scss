@@ -1,0 +1,494 @@
+// My Pets Page Styles
+.page-header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+}
+
+.custom-segment {
+  margin: 0 16px 20px;
+  
+  ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+    --color-checked: var(--ion-color-primary);
+    
+    ion-label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    ion-icon {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  
+  ion-spinner {
+    margin-bottom: 16px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 1rem;
+  }
+}
+
+.pets-container {
+  padding: 0 16px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  
+  .empty-icon {
+    font-size: 4rem;
+    color: var(--ion-color-medium);
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: var(--ion-color-dark);
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+    font-size: 1rem;
+  }
+  
+  ion-button {
+    --border-radius: 25px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    height: 48px;
+    font-weight: 600;
+  }
+}
+
+.pets-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pet-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .pet-image {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .pet-species-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      ion-icon {
+        font-size: 1.2rem;
+        color: var(--ion-color-primary);
+      }
+    }
+  }
+  
+  .pet-info {
+    padding: 16px;
+    
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+    }
+    
+    .pet-breed {
+      margin: 0 0 4px;
+      color: var(--ion-color-medium);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .pet-age {
+      margin: 0 0 12px;
+      color: var(--ion-color-medium);
+      font-size: 0.9rem;
+    }
+    
+    .pet-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.85rem;
+        color: var(--ion-color-medium);
+        
+        ion-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+    
+    .vaccination-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      width: fit-content;
+      
+      &.up-to-date {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+      
+      &.upcoming {
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+      }
+      
+      &.overdue {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+      }
+      
+      ion-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .pet-actions {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    
+    ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      --border-radius: 20px;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      
+      ion-icon {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+.vaccines-container {
+  padding: 0 16px;
+}
+
+.vaccines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.pet-vaccine-section {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    margin: 0 0 16px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ion-color-dark);
+  }
+  
+  .vaccine-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .no-vaccines {
+    text-align: center;
+    padding: 20px;
+    color: var(--ion-color-medium);
+    
+    p {
+      margin-bottom: 12px;
+    }
+  }
+  
+  .vaccine-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: var(--ion-color-light);
+    border-radius: 12px;
+    
+    .vaccine-info {
+      flex: 1;
+      
+      h4 {
+        margin: 0 0 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--ion-color-dark);
+      }
+      
+      .vaccine-date {
+        margin: 0 0 2px;
+        font-size: 0.9rem;
+        color: var(--ion-color-medium);
+      }
+      
+      .vaccine-vet {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--ion-color-medium);
+      }
+    }
+    
+    .vaccine-status {
+      ion-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  
+  .view-all-vaccines {
+    --border-radius: 25px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    height: 40px;
+    font-weight: 600;
+    width: 100%;
+  }
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.form-container {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  
+  .form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid var(--ion-color-light);
+    
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+    }
+    
+    ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      
+      ion-icon {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  
+  .pet-form {
+    padding: 0 20px 20px;
+    
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      margin-bottom: 16px;
+      
+      ion-label {
+        font-weight: 600;
+        color: var(--ion-color-dark);
+        margin-bottom: 8px;
+      }
+      
+      ion-input, ion-select, ion-textarea {
+        --padding-start: 12px;
+        --padding-end: 12px;
+        --border-radius: 8px;
+        border: 1px solid var(--ion-color-light);
+        background: var(--ion-color-light);
+      }
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      
+      ion-button {
+        flex: 1;
+        --border-radius: 25px;
+        height: 48px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Custom Alert Styles
+.custom-alert {
+  --background: white;
+  --color: var(--ion-color-dark);
+  --border-radius: 16px;
+  
+  .alert-head {
+    background: var(--ion-color-primary);
+    color: white;
+    padding: 16px;
+    border-radius: 16px 16px 0 0;
+    margin: -16px -16px 16px;
+  }
+  
+  .alert-message {
+    padding: 0 16px;
+    line-height: 1.6;
+  }
+  
+  .alert-button {
+    --border-radius: 25px;
+    --background: var(--ion-color-primary);
+    --color: white;
+    font-weight: 600;
+    margin: 8px;
+    min-height: 44px;
+  }
+}
+
+.pet-details-alert {
+  .pet-details {
+    p {
+      margin: 8px 0;
+      line-height: 1.5;
+      
+      strong {
+        color: var(--ion-color-primary);
+      }
+    }
+  }
+}
+
+.vaccination-details-alert {
+  .vaccination-item {
+    background: var(--ion-color-light);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    
+    strong {
+      color: var(--ion-color-primary);
+    }
+  }
+}
+
+.success-alert {
+  .alert-head {
+    background: var(--ion-color-success);
+  }
+  
+  .alert-button {
+    --background: var(--ion-color-success);
+  }
+}
+
+.error-alert {
+  .alert-head {
+    background: var(--ion-color-danger);
+  }
+  
+  .alert-button {
+    --background: var(--ion-color-danger);
+  }
+}

@@ -3,19 +3,22 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
+import { NavigationHeaderComponent } from '../components/navigation-header.component';
+import { UtilityService } from '../services/utility.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, ReactiveFormsModule, RouterModule, NavigationHeaderComponent]
 })
 export class RegisterPage implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
   private ngZone = inject(NgZone);
+  private utilityService = inject(UtilityService);
 
   registerForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(2)]],

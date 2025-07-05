@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, AlertController, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { NavigationHeaderComponent } from '../components/navigation-header.component';
+import { UtilityService } from '../services/utility.service';
 
 @Component({
   selector: 'app-webcam',
   templateUrl: './webcam.page.html',
   styleUrls: ['./webcam.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule]
+  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
 })
 export class WebcamPage implements OnInit {
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
   private navCtrl = inject(NavController);
+  private utilityService = inject(UtilityService);
 
   capturedImage: string | undefined;
   isLoading: boolean = false;
@@ -369,7 +372,7 @@ export class WebcamPage implements OnInit {
 
   // Ir a home
   goToHome() {
-    this.router.navigateByUrl('/home', { replaceUrl: true });
+    this.utilityService.goToHome();
   }
 
   // Mostrar preview de la imagen capturada

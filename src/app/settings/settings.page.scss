@@ -1,0 +1,388 @@
+// Settings Page Styles
+.page-header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+}
+
+.custom-segment {
+  margin: 0 16px 20px;
+  overflow-x: auto;
+  
+  ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+    --color-checked: var(--ion-color-primary);
+    min-width: 100px;
+    
+    ion-label {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+    }
+    
+    ion-icon {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.settings-section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: white;
+  border-bottom: 1px solid var(--ion-color-light);
+  
+  ion-icon {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ion-color-dark);
+  }
+}
+
+.settings-list {
+  background: white;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  
+  ion-item {
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --inner-padding-end: 0;
+    --min-height: 64px;
+    
+    ion-label {
+      h3 {
+        font-weight: 600;
+        color: var(--ion-color-dark);
+        margin-bottom: 4px;
+        font-size: 1rem;
+      }
+      
+      p {
+        color: var(--ion-color-medium);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0;
+      }
+    }
+    
+    ion-toggle {
+      --handle-background: white;
+      --handle-background-checked: white;
+      --background: var(--ion-color-light);
+      --background-checked: var(--ion-color-primary);
+    }
+    
+    ion-select {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      min-width: 120px;
+      
+      .select-text {
+        font-weight: 600;
+        color: var(--ion-color-primary);
+      }
+    }
+  }
+}
+
+.subsection {
+  margin-top: 24px;
+  
+  h4 {
+    margin: 0 0 12px;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+  }
+  
+  ion-item {
+    --padding-start: 32px;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 24px;
+      background: var(--ion-color-primary);
+      border-radius: 2px;
+    }
+  }
+}
+
+.privacy-actions,
+.management-actions,
+.about-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  margin: 0 16px;
+  
+  ion-button {
+    --border-radius: 25px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    height: 48px;
+    font-weight: 600;
+    justify-content: flex-start;
+    text-align: left;
+    
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.app-management {
+  margin-bottom: 32px;
+  
+  .section-header {
+    border-radius: 12px 12px 0 0;
+    margin: 0 16px;
+  }
+  
+  .management-actions {
+    margin-top: 0;
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+.about-section {
+  margin-bottom: 32px;
+  
+  .section-header {
+    border-radius: 12px 12px 0 0;
+    margin: 0 16px;
+  }
+  
+  .about-actions {
+    margin-top: 0;
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+// Custom Alert Styles
+.custom-alert {
+  --background: white;
+  --color: var(--ion-color-dark);
+  --border-radius: 16px;
+  
+  .alert-head {
+    background: var(--ion-color-primary);
+    color: white;
+    padding: 16px;
+    border-radius: 16px 16px 0 0;
+    margin: -16px -16px 16px;
+    
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+  
+  .alert-message {
+    padding: 0 16px;
+    line-height: 1.6;
+    
+    ul {
+      margin: 8px 0;
+      padding-left: 20px;
+      
+      li {
+        margin: 4px 0;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+  
+  .alert-button {
+    --border-radius: 25px;
+    --background: var(--ion-color-primary);
+    --color: white;
+    font-weight: 600;
+    margin: 8px;
+    min-height: 44px;
+    
+    &.alert-button-role-cancel {
+      --background: transparent;
+      --color: var(--ion-color-medium);
+      --border-color: var(--ion-color-light);
+      --border-style: solid;
+      --border-width: 1px;
+    }
+    
+    &.alert-button-role-destructive {
+      --background: var(--ion-color-danger);
+    }
+  }
+}
+
+.about-alert {
+  .about-content {
+    text-align: center;
+    
+    h3 {
+      margin: 0 0 8px;
+      color: var(--ion-color-primary);
+      font-weight: 700;
+    }
+    
+    p {
+      margin: 4px 0;
+      line-height: 1.5;
+      
+      &:last-child {
+        font-size: 0.9rem;
+        color: var(--ion-color-medium);
+        margin-top: 12px;
+      }
+    }
+  }
+}
+
+.privacy-alert,
+.terms-alert {
+  .privacy-content,
+  .terms-content {
+    p {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+    
+    ul {
+      margin: 8px 0;
+      padding-left: 20px;
+      
+      li {
+        margin: 4px 0;
+        color: var(--ion-color-medium);
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// Custom Toast Styles
+.custom-toast {
+  --background: var(--ion-color-success);
+  --color: white;
+  --border-radius: 25px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  .toast-message {
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+// Theme variations
+:host-context(body[color-theme="dark"]) {
+  .page-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  
+  .settings-list,
+  .privacy-actions,
+  .management-actions,
+  .about-actions {
+    background: var(--ion-color-dark);
+    
+    ion-item {
+      --background: var(--ion-color-dark);
+      --color: white;
+      
+      ion-label {
+        h3 {
+          color: white;
+        }
+      }
+    }
+  }
+  
+  .section-header {
+    background: var(--ion-color-dark);
+    color: white;
+    border-bottom-color: var(--ion-color-medium);
+  }
+}
+
+// Font size variations
+:host-context(body[font-size="small"]) {
+  .settings-list ion-item ion-label {
+    h3 {
+      font-size: 0.9rem;
+    }
+    
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+:host-context(body[font-size="large"]) {
+  .settings-list ion-item ion-label {
+    h3 {
+      font-size: 1.1rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Responsive design
+@media (min-width: 768px) {
+  .custom-segment {
+    justify-content: center;
+    
+    ion-segment-button {
+      min-width: 140px;
+    }
+  }
+  
+  .privacy-actions,
+  .management-actions,
+  .about-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    ion-button {
+      flex: 1;
+      min-width: 200px;
+    }
+  }
+}

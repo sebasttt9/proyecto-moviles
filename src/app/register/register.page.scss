@@ -4,28 +4,6 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
-// Header
-ion-header {
-  ion-toolbar {
-    --background: #007bff !important;
-    --color: #ffffff !important;
-    --min-height: 60px;
-    
-    ion-title {
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      .header-logo {
-        width: 70px;
-        height: 54px;
-        object-fit: contain;
-      }
-    }
-  }
-}
-
 .register-container {
   display: flex;
   align-items: center;

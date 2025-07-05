@@ -2,17 +2,20 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IonicModule, AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { UtilityService } from '../services/utility.service';
+import { NavigationHeaderComponent } from '../components/navigation-header.component';
 
 @Component({
   selector: 'app-adopcion',
   templateUrl: './adopcion.page.html',
   styleUrls: ['./adopcion.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule]
+  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
 })
 export class AdopcionPage implements OnInit {
   private alertCtrl = inject(AlertController);
   private router = inject(Router);
+  private utilityService = inject(UtilityService);
   
   // Loading state
   isLoading = false;
@@ -337,7 +340,12 @@ export class AdopcionPage implements OnInit {
   
   // Ir a home
   goToHome() {
-    this.router.navigateByUrl('/home', { replaceUrl: true });
+    this.utilityService.goToHome();
+  }
+  
+  // Método de navegación hacia atrás
+  goBack() {
+    this.utilityService.goBack();
   }
   
   // Mostrar proceso de adopción

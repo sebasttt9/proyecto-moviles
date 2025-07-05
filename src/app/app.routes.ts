@@ -43,4 +43,20 @@ export const routes: Routes = [
     path: 'veterinaria',
     loadComponent: () => import('./veterinaria/veterinaria.page').then( m => m.VeterinariaPage)
   },
+  {
+    path: 'appointment-history',
+    loadComponent: () => import('./appointment-history/appointment-history.page').then( m => m.AppointmentHistoryPage)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
+  },
+  {
+    path: 'my-pets',
+    loadComponent: () => import('./my-pets/my-pets.page').then( m => m.MyPetsPage)
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./settings/settings.page').then( m => m.SettingsPage)
+  },
 ];
