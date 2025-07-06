@@ -8,7 +8,34 @@ export interface BaseModel {
 }
 
 // ===================================================
-// 🔹 USER MODELS
+// 🔹 ENUMS GENERALES
+// ===================================================
+export enum PetGender {
+  FEMALE = 'female',
+  MALE = 'male'
+}
+
+export enum PetSize {
+  EXTRA_SMALL = 'extra_small',
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+  EXTRA_LARGE = 'extra_large'
+}
+
+export enum PetSpecies {
+  BIRD = 'bird',
+  CAT = 'cat',
+  DOG = 'dog',
+  FISH = 'fish',
+  HAMSTER = 'hamster',
+  OTHER = 'other',
+  RABBIT = 'rabbit',
+  REPTILE = 'reptile'
+}
+
+// ===================================================
+// 🔹 USUARIOS
 // ===================================================
 export interface User extends BaseModel {
   email: string;
@@ -23,6 +50,12 @@ export interface User extends BaseModel {
   isActive: boolean;
   emailVerified: boolean;
   phoneVerified: boolean;
+}
+
+export enum UserRole {
+  ADMIN = 'admin',
+  USER = 'user',
+  VETERINARIAN = 'veterinarian'
 }
 
 export interface Address {
@@ -49,14 +82,8 @@ export interface NotificationSettings {
   promotions: boolean;
 }
 
-export enum UserRole {
-  USER = 'user',
-  VETERINARIAN = 'veterinarian',
-  ADMIN = 'admin'
-}
-
 // ===================================================
-// 🔹 PET MODELS
+// 🔹 MASCOTAS
 // ===================================================
 export interface Pet extends BaseModel {
   name: string;
@@ -77,24 +104,8 @@ export interface Pet extends BaseModel {
   isActive: boolean;
 }
 
-export enum PetSpecies {
-  DOG = 'dog',
-  CAT = 'cat',
-  BIRD = 'bird',
-  RABBIT = 'rabbit',
-  HAMSTER = 'hamster',
-  FISH = 'fish',
-  REPTILE = 'reptile',
-  OTHER = 'other'
-}
-
-export enum PetGender {
-  MALE = 'male',
-  FEMALE = 'female'
-}
-
 // ===================================================
-// 🔹 VACCINATION MODELS
+// 🔹 VACUNACIÓN
 // ===================================================
 export interface Vaccination extends BaseModel {
   petId: string;
@@ -111,17 +122,17 @@ export interface Vaccination extends BaseModel {
 }
 
 export enum VaccinationType {
-  RABIES = 'rabies',
-  DHPP = 'dhpp',
-  FVRCP = 'fvrcp',
   BORDETELLA = 'bordetella',
-  LYME = 'lyme',
+  DHPP = 'dhpp',
   FELINE_LEUKEMIA = 'feline_leukemia',
-  OTHER = 'other'
+  FVRCP = 'fvrcp',
+  LYME = 'lyme',
+  OTHER = 'other',
+  RABIES = 'rabies'
 }
 
 // ===================================================
-// 🔹 MEDICAL RECORD MODELS
+// 🔹 HISTORIAL MÉDICO
 // ===================================================
 export interface MedicalRecord extends BaseModel {
   petId: string;
@@ -153,17 +164,17 @@ export interface Medication {
 
 export enum MedicalVisitType {
   CHECKUP = 'checkup',
-  VACCINATION = 'vaccination',
-  ILLNESS = 'illness',
-  SURGERY = 'surgery',
   DENTAL = 'dental',
-  GROOMING = 'grooming',
   EMERGENCY = 'emergency',
-  OTHER = 'other'
+  GROOMING = 'grooming',
+  ILLNESS = 'illness',
+  OTHER = 'other',
+  SURGERY = 'surgery',
+  VACCINATION = 'vaccination'
 }
 
 // ===================================================
-// 🔹 APPOINTMENT MODELS
+// 🔹 CITAS
 // ===================================================
 export interface Appointment extends BaseModel {
   userId: string;
@@ -174,7 +185,7 @@ export interface Appointment extends BaseModel {
   clinicId: string;
   clinicName: string;
   appointmentDate: Date;
-  duration: number; // in minutes
+  duration: number;
   appointmentType: AppointmentType;
   status: AppointmentStatus;
   reason: string;
@@ -187,27 +198,27 @@ export interface Appointment extends BaseModel {
 
 export enum AppointmentType {
   CHECKUP = 'checkup',
-  VACCINATION = 'vaccination',
   CONSULTATION = 'consultation',
-  SURGERY = 'surgery',
-  GROOMING = 'grooming',
   DENTAL = 'dental',
   EMERGENCY = 'emergency',
-  OTHER = 'other'
+  GROOMING = 'grooming',
+  OTHER = 'other',
+  SURGERY = 'surgery',
+  VACCINATION = 'vaccination'
 }
 
 export enum AppointmentStatus {
-  SCHEDULED = 'scheduled',
+  CANCELLED = 'cancelled',
+  COMPLETED = 'completed',
   CONFIRMED = 'confirmed',
   IN_PROGRESS = 'in_progress',
-  COMPLETED = 'completed',
-  CANCELLED = 'cancelled',
   NO_SHOW = 'no_show',
-  RESCHEDULED = 'rescheduled'
+  RESCHEDULED = 'rescheduled',
+  SCHEDULED = 'scheduled'
 }
 
 // ===================================================
-// 🔹 VETERINARIAN & CLINIC
+// 🔹 VETERINARIOS Y CLÍNICAS
 // ===================================================
 export interface Veterinarian extends BaseModel {
   userId: string;
@@ -224,22 +235,16 @@ export interface Veterinarian extends BaseModel {
 }
 
 export enum VeterinarySpecialization {
-  GENERAL_PRACTICE = 'general_practice',
-  SURGERY = 'surgery',
-  DENTISTRY = 'dentistry',
   CARDIOLOGY = 'cardiology',
+  DENTISTRY = 'dentistry',
   DERMATOLOGY = 'dermatology',
-  ONCOLOGY = 'oncology',
-  ORTHOPEDICS = 'orthopedics',
-  OPHTHALMOLOGY = 'ophthalmology',
+  EMERGENCY = 'emergency',
   EXOTIC_PETS = 'exotic_pets',
-  EMERGENCY = 'emergency'
-}
-
-export interface TimeSlot {
-  dayOfWeek: number; // 0-6, Sunday = 0
-  startTime: string; // HH:MM format
-  endTime: string;   // HH:MM format
+  GENERAL_PRACTICE = 'general_practice',
+  ONCOLOGY = 'oncology',
+  OPHTHALMOLOGY = 'ophthalmology',
+  ORTHOPEDICS = 'orthopedics',
+  SURGERY = 'surgery'
 }
 
 export interface Clinic extends BaseModel {
@@ -262,62 +267,28 @@ export interface ClinicService {
   name: string;
   description: string;
   price: number;
-  duration: number; // in minutes
+  duration: number;
   category: ServiceCategory;
   isActive: boolean;
 }
 
 export enum ServiceCategory {
-  VETERINARY = 'veterinary',
-  GROOMING = 'grooming',
   BOARDING = 'boarding',
-  TRAINING = 'training',
   EMERGENCY = 'emergency',
-  OTHER = 'other'
+  GROOMING = 'grooming',
+  OTHER = 'other',
+  TRAINING = 'training',
+  VETERINARY = 'veterinary'
+}
+
+export interface TimeSlot {
+  dayOfWeek: number; // 0–6 (Sunday = 0)
+  startTime: string; // HH:MM
+  endTime: string;   // HH:MM
 }
 
 // ===================================================
-// 🔹 GROOMING
-// ===================================================
-export interface GroomingService extends BaseModel {
-  name: string;
-  description: string;
-  price: number;
-  duration: number;
-  category: GroomingCategory;
-  petSpecies: PetSpecies[];
-  imageUrl?: string;
-  isActive: boolean;
-}
-
-export enum GroomingCategory {
-  BATH = 'bath',
-  HAIRCUT = 'haircut',
-  NAIL_TRIM = 'nail_trim',
-  TEETH_CLEANING = 'teeth_cleaning',
-  EAR_CLEANING = 'ear_cleaning',
-  FULL_GROOMING = 'full_grooming',
-  SPECIAL_TREATMENT = 'special_treatment'
-}
-
-export interface GroomingAppointment extends BaseModel {
-  userId: string;
-  petId: string;
-  petName: string;
-  services: GroomingService[];
-  appointmentDate: Date;
-  duration: number;
-  totalCost: number;
-  status: AppointmentStatus;
-  notes?: string;
-  groomerId: string;
-  groomerName: string;
-  beforePhotos: string[];
-  afterPhotos: string[];
-}
-
-// ===================================================
-// 🔹 ADOPTION
+// 🔹 ADOPCIONES
 // ===================================================
 export interface AdoptionPet extends BaseModel {
   name: string;
@@ -345,19 +316,19 @@ export interface AdoptionPet extends BaseModel {
   applicantCount: number;
 }
 
-export enum HealthStatus {
-  EXCELLENT = 'excellent',
-  GOOD = 'good',
-  FAIR = 'fair',
-  NEEDS_MEDICAL_ATTENTION = 'needs_medical_attention'
+export enum AdoptionStatus {
+  ADOPTED = 'adopted',
+  AVAILABLE = 'available',
+  ON_HOLD = 'on_hold',
+  PENDING = 'pending',
+  UNAVAILABLE = 'unavailable'
 }
 
-export enum AdoptionStatus {
-  AVAILABLE = 'available',
-  PENDING = 'pending',
-  ADOPTED = 'adopted',
-  ON_HOLD = 'on_hold',
-  UNAVAILABLE = 'unavailable'
+export enum HealthStatus {
+  EXCELLENT = 'excellent',
+  FAIR = 'fair',
+  GOOD = 'good',
+  NEEDS_MEDICAL_ATTENTION = 'needs_medical_attention'
 }
 
 export interface AdoptionApplication extends BaseModel {
@@ -378,10 +349,10 @@ export interface AdoptionApplication extends BaseModel {
 }
 
 export enum ApplicationStatus {
-  SUBMITTED = 'submitted',
-  UNDER_REVIEW = 'under_review',
   APPROVED = 'approved',
   REJECTED = 'rejected',
+  SUBMITTED = 'submitted',
+  UNDER_REVIEW = 'under_review',
   WITHDRAWN = 'withdrawn'
 }
 
@@ -404,11 +375,11 @@ export interface HousingInfo {
 }
 
 export enum HousingType {
-  HOUSE = 'house',
   APARTMENT = 'apartment',
   CONDO = 'condo',
-  TOWNHOUSE = 'townhouse',
-  OTHER = 'other'
+  HOUSE = 'house',
+  OTHER = 'other',
+  TOWNHOUSE = 'townhouse'
 }
 
 export interface ExperienceInfo {
@@ -428,7 +399,7 @@ export interface Reference {
 }
 
 // ===================================================
-// 🔹 NOTIFICATIONS
+// 🔹 NOTIFICACIONES
 // ===================================================
 export interface Notification extends BaseModel {
   userId: string;
@@ -443,18 +414,18 @@ export interface Notification extends BaseModel {
 }
 
 export enum NotificationType {
-  APPOINTMENT_REMINDER = 'appointment_reminder',
-  VACCINATION_REMINDER = 'vaccination_reminder',
-  MEDICATION_REMINDER = 'medication_reminder',
-  GROOMING_REMINDER = 'grooming_reminder',
   ADOPTION_UPDATE = 'adoption_update',
+  APPOINTMENT_REMINDER = 'appointment_reminder',
+  GENERAL = 'general',
+  GROOMING_REMINDER = 'grooming_reminder',
+  MEDICATION_REMINDER = 'medication_reminder',
   PROMOTION = 'promotion',
   SYSTEM_ALERT = 'system_alert',
-  GENERAL = 'general'
+  VACCINATION_REMINDER = 'vaccination_reminder'
 }
 
 // ===================================================
-// 🔹 UTILS - RESPONSES, FORMS, FILTERS, STATS
+// 🔹 STATS Y FILTROS
 // ===================================================
 export interface ApiResponse<T> {
   success: boolean;
@@ -512,14 +483,6 @@ export interface DateRange {
 export interface AgeRange {
   min: number;
   max: number;
-}
-
-export enum PetSize {
-  EXTRA_SMALL = 'extra_small',
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
-  EXTRA_LARGE = 'extra_large'
 }
 
 export interface UserStatistics {
