@@ -1,11 +1,15 @@
-// Base interface for all models
+// ===================================================
+// 🔹 BASE MODEL
+// ===================================================
 export interface BaseModel {
   id: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-// User related interfaces
+// ===================================================
+// 🔹 USER MODELS
+// ===================================================
 export interface User extends BaseModel {
   email: string;
   name: string;
@@ -51,7 +55,9 @@ export enum UserRole {
   ADMIN = 'admin'
 }
 
-// Pet related interfaces
+// ===================================================
+// 🔹 PET MODELS
+// ===================================================
 export interface Pet extends BaseModel {
   name: string;
   species: PetSpecies;
@@ -87,6 +93,9 @@ export enum PetGender {
   FEMALE = 'female'
 }
 
+// ===================================================
+// 🔹 VACCINATION MODELS
+// ===================================================
 export interface Vaccination extends BaseModel {
   petId: string;
   name: string;
@@ -111,6 +120,9 @@ export enum VaccinationType {
   OTHER = 'other'
 }
 
+// ===================================================
+// 🔹 MEDICAL RECORD MODELS
+// ===================================================
 export interface MedicalRecord extends BaseModel {
   petId: string;
   veterinarianId: string;
@@ -130,6 +142,15 @@ export interface MedicalRecord extends BaseModel {
   cost?: number;
 }
 
+export interface Medication {
+  name: string;
+  dosage: string;
+  frequency: string;
+  startDate: Date;
+  endDate?: Date;
+  instructions: string;
+}
+
 export enum MedicalVisitType {
   CHECKUP = 'checkup',
   VACCINATION = 'vaccination',
@@ -141,16 +162,9 @@ export enum MedicalVisitType {
   OTHER = 'other'
 }
 
-export interface Medication {
-  name: string;
-  dosage: string;
-  frequency: string;
-  startDate: Date;
-  endDate?: Date;
-  instructions: string;
-}
-
-// Appointment related interfaces
+// ===================================================
+// 🔹 APPOINTMENT MODELS
+// ===================================================
 export interface Appointment extends BaseModel {
   userId: string;
   petId: string;
@@ -192,12 +206,14 @@ export enum AppointmentStatus {
   RESCHEDULED = 'rescheduled'
 }
 
-// Service provider interfaces
+// ===================================================
+// 🔹 VETERINARIAN & CLINIC
+// ===================================================
 export interface Veterinarian extends BaseModel {
   userId: string;
   licenseNumber: string;
   specializations: VeterinarySpecialization[];
-  experience: number; // years
+  experience: number;
   rating: number;
   reviewCount: number;
   clinicId: string;
@@ -223,7 +239,7 @@ export enum VeterinarySpecialization {
 export interface TimeSlot {
   dayOfWeek: number; // 0-6, Sunday = 0
   startTime: string; // HH:MM format
-  endTime: string; // HH:MM format
+  endTime: string;   // HH:MM format
 }
 
 export interface Clinic extends BaseModel {
@@ -260,12 +276,14 @@ export enum ServiceCategory {
   OTHER = 'other'
 }
 
-// Grooming related interfaces
+// ===================================================
+// 🔹 GROOMING
+// ===================================================
 export interface GroomingService extends BaseModel {
   name: string;
   description: string;
   price: number;
-  duration: number; // in minutes
+  duration: number;
   category: GroomingCategory;
   petSpecies: PetSpecies[];
   imageUrl?: string;
@@ -298,7 +316,9 @@ export interface GroomingAppointment extends BaseModel {
   afterPhotos: string[];
 }
 
-// Adoption related interfaces
+// ===================================================
+// 🔹 ADOPTION
+// ===================================================
 export interface AdoptionPet extends BaseModel {
   name: string;
   species: PetSpecies;
@@ -407,7 +427,9 @@ export interface Reference {
   email: string;
 }
 
-// Notification related interfaces
+// ===================================================
+// 🔹 NOTIFICATIONS
+// ===================================================
 export interface Notification extends BaseModel {
   userId: string;
   type: NotificationType;
@@ -431,7 +453,9 @@ export enum NotificationType {
   GENERAL = 'general'
 }
 
-// API Response interfaces
+// ===================================================
+// 🔹 UTILS - RESPONSES, FORMS, FILTERS, STATS
+// ===================================================
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
@@ -450,7 +474,6 @@ export interface PaginatedResponse<T> {
   hasPreviousPage: boolean;
 }
 
-// Form related interfaces
 export interface FormValidationResult {
   isValid: boolean;
   errors: { [key: string]: string };
@@ -463,7 +486,6 @@ export interface SelectOption {
   icon?: string;
 }
 
-// Search and filter interfaces
 export interface SearchFilters {
   query?: string;
   category?: string;
@@ -500,7 +522,6 @@ export enum PetSize {
   EXTRA_LARGE = 'extra_large'
 }
 
-// Statistics interfaces
 export interface UserStatistics {
   totalPets: number;
   totalAppointments: number;
