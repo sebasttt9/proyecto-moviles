@@ -5,54 +5,64 @@
     <div class="hero-container">
       <div class="hero-content">
         <h1>Servicio de Grooming</h1>
-        <p>Dicen que la mascota se parece a su dueño, por ello nos encargamos de que ellos se vean tan bien como tú.</p>
-        
+        <p>
+          Dicen que la mascota se parece a su dueño, por ello nos encargamos de que ellos
+          se vean tan bien como tú.
+        </p>
+
         <!-- Stats Grid -->
         <div class="stats-grid">
+          <!-- Servicios Realizados -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="cut-outline"></ion-icon>
             </div>
             <div class="stat-info">
-              <h3>{{stats.totalGrooming}}</h3>
+              <h3>{{ stats.totalGrooming }}</h3>
               <p>Servicios Realizados</p>
             </div>
           </div>
-          
+
+          <!-- Satisfacción -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="star-outline"></ion-icon>
             </div>
             <div class="stat-info">
-              <h3>{{stats.satisfaction}}%</h3>
+              <h3>{{ stats.satisfaction }}%</h3>
               <p>Satisfacción</p>
             </div>
           </div>
-          
+
+          <!-- Tiempo Promedio -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="time-outline"></ion-icon>
             </div>
             <div class="stat-info">
-              <h3>{{stats.avgTime}}min</h3>
+              <h3>{{ stats.avgTime }}min</h3>
               <p>Tiempo Promedio</p>
             </div>
           </div>
         </div>
-        
-        <!-- Services Section -->
+
+        <!-- Servicios de Grooming -->
         <div class="grooming-services">
           <h2>Nuestros Servicios</h2>
           <div class="services-grid">
-            <div class="service-card" *ngFor="let service of services" (click)="showServiceDetails(service)">
+            <div
+              class="service-card"
+              *ngFor="let service of services"
+              (click)="showServiceDetails(service)"
+            >
               <div class="service-icon">
                 <ion-icon [name]="service.icon"></ion-icon>
               </div>
               <div class="service-content">
-                <h3>{{service.name}}</h3>
-                <p>{{service.description}}</p>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
                 <div class="service-price">
-                  <span>{{service.price}}</span>
+                  <span>{{ service.price }}</span>
                 </div>
               </div>
               <div class="service-arrow">
@@ -61,16 +71,16 @@
             </div>
           </div>
         </div>
-        
-        <!-- Quick Actions -->
+
+        <!-- Acciones Rápidas -->
         <div class="quick-actions">
           <ion-button class="action-btn primary" (click)="scheduleAppointment()">
-            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
             Agendar Cita
           </ion-button>
-          
+
           <ion-button class="action-btn secondary" (click)="viewPrices()">
-            <ion-icon name="pricetag-outline"></ion-icon>
+            <ion-icon name="pricetag-outline" slot="start"></ion-icon>
             Ver Precios
           </ion-button>
         </div>
@@ -78,5 +88,3 @@
     </div>
   </div>
 </ion-content>
-
-
