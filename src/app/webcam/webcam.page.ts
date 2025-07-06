@@ -14,6 +14,7 @@ import { UtilityService } from '../services/utility.service';
   imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
 })
 export class WebcamPage implements OnInit {
+[x: string]: any;
   private router = inject(Router);
   private alertCtrl = inject(AlertController);
   private navCtrl = inject(NavController);
@@ -373,6 +374,16 @@ export class WebcamPage implements OnInit {
   // Ir a home
   goToHome() {
     this.utilityService.goToHome();
+  }
+
+  // Navegación a página de estancia
+  async openEstancia() {
+    try {
+      await this.router.navigateByUrl('/estancia', { replaceUrl: true });
+    } catch (error) {
+      console.error('Error navegando a estancia:', error);
+      await this.utilityService.showAlert('Error', 'No se pudo abrir la página de estancia');
+    }
   }
 
   // Mostrar preview de la imagen capturada

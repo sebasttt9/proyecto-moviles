@@ -1,0 +1,219 @@
+<app-navigation-header title="Estancia"></app-navigation-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>🏠 Estancia para Mascotas</h1>
+        <p>Un hogar temporal lleno de amor y cuidado para tu mascota mientras no estás</p>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="paw-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.totalAnimals}}</h3>
+              <p>Mascotas Cuidadas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="bed-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.availableSpaces}}</h3>
+              <p>Espacios Disponibles</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="heart-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.satisfaction}}%</h3>
+              <p>Satisfacción</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">
+              <ion-icon name="time-outline"></ion-icon>
+            </div>
+            <div class="stat-info">
+              <h3>{{stats.avgStay}} días</h3>
+              <p>Estancia Promedio</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Services Section -->
+        <div class="services-section">
+          <h2>Tipos de Estancia</h2>
+          <div class="services-grid">
+            <div class="service-card" *ngFor="let service of services" (click)="reserveStay(service)">
+              <div class="service-header">
+                <div class="service-icon">
+                  <ion-icon [name]="service.icon"></ion-icon>
+                </div>
+                <div class="service-duration">
+                  {{service.duration}}
+                </div>
+              </div>
+              <div class="service-content">
+                <h3>{{service.name}}</h3>
+                <p>{{service.description}}</p>
+                <div class="service-price">
+                  <span>{{service.price}}</span>
+                </div>
+              </div>
+              <div class="service-action">
+                <ion-button fill="outline" size="small">
+                  Reservar
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="features-section">
+          <h2>¿Qué Incluye Nuestro Servicio?</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <ion-icon name="videocam-outline"></ion-icon>
+              <h4>Monitoreo 24/7</h4>
+              <p>Cámaras en vivo para que veas a tu mascota</p>
+            </div>
+            <div class="feature-item">
+              <ion-icon name="restaurant-outline"></ion-icon>
+              <h4>Alimentación</h4>
+              <p>Comidas nutritivas según horarios</p>
+            </div>
+            <div class="feature-item">
+              <ion-icon name="fitness-outline"></ion-icon>
+              <h4>Ejercicio</h4>
+              <p>Actividades físicas y recreativas</p>
+            </div>
+            <div class="feature-item">
+              <ion-icon name="medical-outline"></ion-icon>
+              <h4>Cuidado Médico</h4>
+              <p>Atención veterinaria de emergencia</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <ion-button class="action-btn primary" (click)="viewSchedule()">
+            <ion-icon name="calendar-outline"></ion-icon>
+            Ver Horarios
+          </ion-button>
+          
+          <ion-button class="action-btn secondary" (click)="contactUs()">
+            <ion-icon name="call-outline"></ion-icon>
+            Contactar
+          </ion-button>
+        </div>
+
+        <!-- Nearby Estancias Section -->
+        <div class="nearby-section">
+          <div class="section-header">
+            <h2>🗺️ Estancias Cercanas</h2>
+            <ion-button fill="clear" size="small" (click)="refreshLocation()" [disabled]="isLoadingLocation">
+              <ion-icon name="refresh-outline"></ion-icon>
+              Actualizar
+            </ion-button>
+          </div>
+
+          <div class="location-info" *ngIf="userLocation">
+            <ion-chip color="primary">
+              <ion-icon name="location-outline"></ion-icon>
+              <ion-label>Ubicación detectada</ion-label>
+            </ion-chip>
+          </div>
+
+          <div class="loading-location" *ngIf="isLoadingLocation">
+            <ion-spinner name="circles"></ion-spinner>
+            <p>Buscando estancias cercanas...</p>
+          </div>
+
+          <div class="estancias-grid" *ngIf="!isLoadingLocation">
+            <div class="estancia-card" *ngFor="let estancia of nearbyEstancias; let i = index" (click)="viewEstanciaDetails(estancia)">
+              <div class="estancia-header">
+                <div class="estancia-image">
+                  <div class="placeholder-image">
+                    <ion-icon name="business-outline"></ion-icon>
+                  </div>
+                  <div class="distance-badge">
+                    {{estancia.distance}} km
+                  </div>
+                </div>
+                <div class="estancia-rank" *ngIf="i < 3">
+                  <ion-icon name="trophy-outline" [color]="i === 0 ? 'warning' : i === 1 ? 'medium' : 'dark'"></ion-icon>
+                </div>
+              </div>
+              
+              <div class="estancia-content">
+                <h3>{{estancia.name}}</h3>
+                <p class="address">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{estancia.address}}
+                </p>
+                
+                <div class="estancia-meta">
+                  <div class="rating">
+                    <ion-icon name="star" color="warning"></ion-icon>
+                    <span>{{estancia.rating}}</span>
+                  </div>
+                  <div class="availability">
+                    <ion-icon name="bed-outline" color="success"></ion-icon>
+                    <span>{{estancia.availableSpaces}} espacios</span>
+                  </div>
+                </div>
+                
+                <div class="price-range">
+                  <span>{{estancia.priceRange}}</span>
+                </div>
+                
+                <div class="specialties">
+                  <ion-chip *ngFor="let specialty of estancia.specialties.slice(0, 2)" color="light" class="specialty-chip">
+                    <ion-label>{{specialty}}</ion-label>
+                  </ion-chip>
+                  <ion-chip *ngIf="estancia.specialties.length > 2" color="light" class="specialty-chip">
+                    <ion-label>+{{estancia.specialties.length - 2}} más</ion-label>
+                  </ion-chip>
+                </div>
+              </div>
+              
+              <div class="estancia-actions">
+                <ion-button fill="outline" size="small" (click)="callEstancia(estancia); $event.stopPropagation()">
+                  <ion-icon name="call-outline"></ion-icon>
+                  Llamar
+                </ion-button>
+                <ion-button fill="solid" size="small" (click)="reserveEstancia(estancia); $event.stopPropagation()">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  Reservar
+                </ion-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-results" *ngIf="!isLoadingLocation && nearbyEstancias.length === 0">
+            <ion-icon name="location-outline" color="medium"></ion-icon>
+            <h3>No hay estancias cercanas</h3>
+            <p>Intenta ampliar el rango de búsqueda o verifica tu ubicación</p>
+            <ion-button fill="outline" (click)="refreshLocation()">
+              <ion-icon name="refresh-outline"></ion-icon>
+              Intentar nuevamente
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>
