@@ -412,11 +412,11 @@ ion-content {
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       
       @media (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       
       @media (max-width: 480px) {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
     }
     
@@ -424,21 +424,30 @@ ion-content {
       --background: rgba(255, 255, 255, 0.1);
       --color: white;
       --border-radius: 20px;
+      font-weight: 600;
       
       &:hover {
         --background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
       }
     }
   }
   
   .location-info {
     margin-bottom: 20px;
+    text-align: center;
     
     ion-chip {
-      --background: rgba(255, 255, 255, 0.1);
+      --background: rgba(255, 255, 255, 0.15);
       --color: white;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 600;
+      
+      ion-icon {
+        color: #4CAF50;
+      }
     }
   }
   
@@ -447,17 +456,19 @@ ion-content {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 60px 20px;
     text-align: center;
     
     ion-spinner {
       margin-bottom: 20px;
+      --color: white;
     }
     
     p {
       font-size: 1.1rem;
       opacity: 0.8;
       margin: 0;
+      font-weight: 500;
     }
   }
   
@@ -474,19 +485,35 @@ ion-content {
   
   .estancia-card {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
     
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       background: rgba(255, 255, 255, 0.15);
+      
+      &::before {
+        opacity: 1;
+      }
     }
     
     .estancia-header {
@@ -503,12 +530,13 @@ ion-content {
         .placeholder-image {
           width: 100%;
           height: 100%;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          backdrop-filter: blur(5px);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           
           ion-icon {
             font-size: 1.5rem;
@@ -520,19 +548,22 @@ ion-content {
           position: absolute;
           top: -8px;
           right: -8px;
-          background: #4CAF50;
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
           color: white;
-          padding: 2px 6px;
-          border-radius: 10px;
+          padding: 4px 8px;
+          border-radius: 12px;
           font-size: 0.7rem;
           font-weight: 600;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 8px rgba(76, 175, 80, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
       }
       
       .estancia-rank {
         ion-icon {
           font-size: 1.2rem;
+          color: #FFD700;
+          filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
         }
       }
     }
@@ -544,6 +575,7 @@ ion-content {
         margin: 0 0 10px 0;
         color: white;
         line-height: 1.3;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .address {
@@ -576,6 +608,14 @@ ion-content {
             font-size: 1rem;
           }
         }
+        
+        .rating ion-icon {
+          color: #FFD700;
+        }
+        
+        .availability ion-icon {
+          color: #4CAF50;
+        }
       }
       
       .price-range {
@@ -583,6 +623,7 @@ ion-content {
         font-weight: 600;
         color: #4CAF50;
         margin-bottom: 15px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .specialties {
@@ -596,9 +637,12 @@ ion-content {
           --color: white;
           font-size: 0.7rem;
           height: 24px;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           
           ion-label {
             font-size: 0.7rem;
+            font-weight: 500;
           }
         }
       }
@@ -612,6 +656,7 @@ ion-content {
         flex: 1;
         height: 35px;
         font-size: 0.8rem;
+        font-weight: 600;
         
         &[fill="outline"] {
           --border-color: rgba(255, 255, 255, 0.5);
@@ -619,15 +664,19 @@ ion-content {
           
           &:hover {
             --background: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
           }
         }
         
         &[fill="solid"] {
-          --background: #4CAF50;
+          --background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
           --color: white;
           
           &:hover {
-            --background: #45a049;
+            --background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
           }
         }
         
@@ -649,6 +698,7 @@ ion-content {
     ion-icon {
       font-size: 4rem;
       margin-bottom: 20px;
+      opacity: 0.6;
     }
     
     h3 {
@@ -656,6 +706,7 @@ ion-content {
       font-weight: 600;
       margin: 0 0 10px 0;
       color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
     
     p {
@@ -671,10 +722,13 @@ ion-content {
       --color: white;
       --border-color: rgba(255, 255, 255, 0.5);
       --border-width: 2px;
+      font-weight: 600;
       
       &:hover {
         --background: rgba(255, 255, 255, 0.2);
         --border-color: rgba(255, 255, 255, 0.8);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
       }
     }
   }
