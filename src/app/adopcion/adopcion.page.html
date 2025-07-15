@@ -1,19 +1,13 @@
-<app-navigation-header 
-  title="Adopción" 
-  [showLogo]="true"
-  [showHomeButton]="true">
-</app-navigation-header>
-
 <ion-content [fullscreen]="true">
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-container">
       <div class="hero-content">
         <h1>🐾 Adopción de Mascotas</h1>
         <p>Encuentra tu nueva mascota ideal y dale un hogar lleno de amor</p>
 
-        <!-- Stats Cards -->
+        <!-- Tarjetas de estadísticas -->
         <div class="stats-grid">
+
           <div class="stat-card">
             <ion-icon name="heart-outline" class="stat-icon"></ion-icon>
             <div class="stat-info">
@@ -37,14 +31,14 @@
               <p>Especies</p>
             </div>
           </div>
+
         </div>
 
-        <!-- Categorías de adopción -->
+        <!-- Categorías de adopción / venta -->
         <div class="adoption-categories">
-          <h2>📋 Categorías de Adopción</h2>
+          <h2>📋También Vendemos:</h2>
           <div class="categories-grid">
 
-            <!-- Roedores -->
             <div class="category-item" (click)="openAnimalModal('roedores')">
               <div class="category-icon">
                 <img src="assets/icon/roedores.png" alt="Roedores" class="category-image" />
@@ -56,7 +50,6 @@
               </div>
             </div>
 
-            <!-- Reptiles -->
             <div class="category-item" (click)="openAnimalModal('reptiles')">
               <div class="category-icon">
                 <img src="assets/icon/reptiles.png" alt="Reptiles" class="category-image" />
@@ -68,7 +61,6 @@
               </div>
             </div>
 
-            <!-- Peces -->
             <div class="category-item" (click)="openAnimalModal('peces')">
               <div class="category-icon">
                 <img src="assets/icon/peces.png" alt="Peces" class="category-image" />
@@ -83,20 +75,18 @@
           </div>
         </div>
 
-        <!-- Quick Actions -->
+        <!-- Acciones rápidas -->
         <div class="quick-actions">
-          <ion-button 
-            class="action-btn primary" 
-            (click)="showAdoptionProcess()"
-            [disabled]="isLoading">
+          <ion-button class="action-btn primary" 
+                      (click)="showAdoptionProcess()" 
+                      [disabled]="isLoading">
             <ion-icon name="heart-outline" slot="start"></ion-icon>
             Proceso de Adopción
           </ion-button>
 
-          <ion-button 
-            class="action-btn secondary" 
-            (click)="showMyAdoptions()"
-            [disabled]="isLoading">
+          <ion-button class="action-btn secondary" 
+                      (click)="showMyAdoptions()" 
+                      [disabled]="isLoading">
             <ion-icon name="list-outline" slot="start"></ion-icon>
             Mis Adopciones
           </ion-button>
@@ -106,7 +96,7 @@
     </div>
   </section>
 
-  <!-- Modal para catálogo de animales -->
+  <!-- Modal: Catálogo de animales -->
   <ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
     <ng-template>
       <ion-header>
@@ -122,31 +112,34 @@
 
       <ion-content class="modal-content">
 
-        <!-- Catálogo de animales -->
+        <!-- Catálogo general -->
         <div class="animal-catalog">
           <div class="catalog-grid">
-            <div class="animal-card" 
-                 *ngFor="let animal of currentAnimals" 
+            <div class="animal-card"
+                 *ngFor="let animal of currentAnimals"
                  (click)="selectAnimal(animal)"
                  [class.selected]="selectedAnimal?.id === animal.id">
+
               <div class="animal-image">
-                <img [src]="animal.image" 
-                     [alt]="animal.name" 
-                     (error)="onImageError($event)" 
+                <img [src]="animal.image"
+                     [alt]="animal.name"
+                     (error)="onImageError($event)"
                      loading="lazy" />
               </div>
+
               <div class="animal-info">
                 <h4>{{ animal.name }}</h4>
                 <p class="species">{{ animal.species }}</p>
                 <p class="age">Edad: {{ animal.age }}</p>
                 <p class="price" *ngIf="animal.price">{{ animal.price }}</p>
                 <p class="status" [ngClass]="animal.status">
-                  {{ animal.status === 'available' ? 'Disponible' : 
+                  {{ animal.status === 'available' ? 'Disponible' :
                      animal.status === 'adopted' ? 'Adoptado' : 'Reservado' }}
                 </p>
               </div>
+
               <div class="animal-actions">
-                <ion-button size="small" fill="outline" 
+                <ion-button size="small" fill="outline"
                             [color]="animal.forAdoption ? 'success' : 'primary'">
                   {{ animal.forAdoption ? 'Adoptar' : 'Comprar' }}
                 </ion-button>
@@ -154,6 +147,7 @@
                   Más info
                 </ion-button>
               </div>
+
             </div>
           </div>
         </div>
@@ -166,6 +160,7 @@
               <ion-card-subtitle>{{ selectedAnimal.species }}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
+
               <div class="details-grid">
                 <div class="detail-item">
                   <strong>Edad:</strong> {{ selectedAnimal.age }}
@@ -187,12 +182,13 @@
               <p class="description">{{ selectedAnimal.description }}</p>
 
               <div class="action-buttons">
-                <ion-button expand="block" 
+                <ion-button expand="block"
                             [color]="selectedAnimal.forAdoption ? 'success' : 'primary'"
                             (click)="processAdoption(selectedAnimal)">
                   {{ selectedAnimal.forAdoption ? 'Solicitar Adopción' : 'Proceder a Compra' }}
                 </ion-button>
               </div>
+
             </ion-card-content>
           </ion-card>
         </div>
@@ -200,4 +196,5 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+
 </ion-content>

@@ -1,0 +1,286 @@
+// ===================================================================
+// 🔹 GLOBAL STYLES
+// ===================================================================
+:host {
+  display: block;
+  contain: layout style paint;
+}
+
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  color: white !important;
+  min-height: 100vh;
+}
+
+// ===================================================================
+// 🔹 HERO SECTION
+// ===================================================================
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  will-change: auto;
+  transform: translateZ(0);
+
+  .hero-container {
+    max-width: 1200px;
+    width: 100%;
+    padding-bottom: 40px;
+  }
+
+  .hero-content {
+    text-align: center;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: white !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+      @media (max-width: 768px) {
+        font-size: 2.8rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 2.2rem;
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      opacity: 0.95;
+
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+// ===================================================================
+// 🔹 STATS SECTION
+// ===================================================================
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    color: #4CAF50;
+  }
+
+  .stat-info {
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: white;
+    }
+
+    p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+// ===================================================================
+// 🔹 ADOPTION CATEGORIES
+// ===================================================================
+.adoption-categories {
+  margin-bottom: 50px;
+
+  h2 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.category-item {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
+  }
+
+  .category-icon {
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px;
+
+    .category-image {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .category-content {
+    flex: 1;
+    text-align: left;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    ion-badge {
+      font-size: 0.9rem;
+      padding: 5px 12px;
+    }
+  }
+}
+
+// ===================================================================
+// 🔹 QUICK ACTIONS
+// ===================================================================
+.quick-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+.action-btn {
+  height: 60px;
+  width: 280px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 0 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  ion-icon {
+    font-size: 1.4rem;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover ion-icon {
+    transform: scale(1.1);
+  }
+
+  &.primary {
+    --background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
+    --color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+
+    &:hover {
+      --background: linear-gradient(135deg, #EE5A52 0%, #DC4C46 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+
+  &.secondary {
+    --background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+    --color: white;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+
+    &:hover {
+      --background: linear-gradient(135deg, #44A08D 0%, #3D8B7A 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(78, 205, 196, 0.6);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}

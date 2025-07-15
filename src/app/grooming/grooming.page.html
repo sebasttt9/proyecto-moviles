@@ -1,5 +1,3 @@
-<app-navigation-header title="Grooming"></app-navigation-header>
-
 <ion-content>
   <div class="hero">
     <div class="hero-container">
@@ -10,9 +8,10 @@
           se vean tan bien como tú.
         </p>
 
-        <!-- Stats Grid -->
+        <!-- Estadísticas del servicio -->
         <div class="stats-grid">
-          <!-- Servicios Realizados -->
+
+          <!-- Servicios realizados -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="cut-outline"></ion-icon>
@@ -23,7 +22,7 @@
             </div>
           </div>
 
-          <!-- Satisfacción -->
+          <!-- Porcentaje de satisfacción -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="star-outline"></ion-icon>
@@ -34,7 +33,7 @@
             </div>
           </div>
 
-          <!-- Tiempo Promedio -->
+          <!-- Tiempo promedio -->
           <div class="stat-card">
             <div class="stat-icon">
               <ion-icon name="time-outline"></ion-icon>
@@ -44,20 +43,22 @@
               <p>Tiempo Promedio</p>
             </div>
           </div>
+
         </div>
 
-        <!-- Servicios de Grooming -->
+        <!-- Servicios ofrecidos -->
         <div class="grooming-services">
           <h2>Nuestros Servicios</h2>
+
           <div class="services-grid">
-            <div
-              class="service-card"
-              *ngFor="let service of services"
-              (click)="showServiceDetails(service)"
-            >
+            <div class="service-card"
+                 *ngFor="let service of services"
+                 (click)="showServiceDetails(service)">
+
               <div class="service-icon">
                 <ion-icon [name]="service.icon"></ion-icon>
               </div>
+
               <div class="service-content">
                 <h3>{{ service.name }}</h3>
                 <p>{{ service.description }}</p>
@@ -65,26 +66,32 @@
                   <span>{{ service.price }}</span>
                 </div>
               </div>
+
               <div class="service-arrow">
                 <ion-icon name="chevron-forward-outline"></ion-icon>
               </div>
+
             </div>
           </div>
         </div>
 
-        <!-- Acciones Rápidas -->
+        <!-- Acciones rápidas -->
         <div class="quick-actions">
-          <ion-button class="action-btn primary" (click)="scheduleAppointment()">
+          <ion-button class="action-btn primary"
+                      (click)="scheduleAppointment()">
             <ion-icon name="calendar-outline" slot="start"></ion-icon>
             Agendar Cita
           </ion-button>
 
-          <ion-button class="action-btn secondary" (click)="viewPrices()">
+          <ion-button class="action-btn secondary"
+                      (click)="viewPrices()">
             <ion-icon name="pricetag-outline" slot="start"></ion-icon>
             Ver Precios
           </ion-button>
         </div>
+
       </div>
     </div>
   </div>
+
 </ion-content>
