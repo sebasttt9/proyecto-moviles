@@ -40,7 +40,7 @@ interface AppSettings {
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, FormsModule,]
 })
 export class SettingsPage implements OnInit {
   settings: AppSettings = {

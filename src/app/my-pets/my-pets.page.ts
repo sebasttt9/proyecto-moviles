@@ -40,7 +40,7 @@ interface Vaccination {
   templateUrl: './my-pets.page.html',
   styleUrls: ['./my-pets.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, FormsModule, ]
 })
 export class MyPetsPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();

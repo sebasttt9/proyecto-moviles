@@ -28,7 +28,7 @@ interface UserProfile {
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, ReactiveFormsModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, ReactiveFormsModule, ]
 })
 export class ProfilePage implements OnInit {
   isEditing = false;

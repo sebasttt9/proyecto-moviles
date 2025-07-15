@@ -53,7 +53,7 @@ interface CalendarDay {
   templateUrl: './veterinaria.page.html',
   styleUrls: ['./veterinaria.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, FormsModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, FormsModule,]
 })
 export class VeterinariaPage implements OnInit {
   private router = inject(Router);

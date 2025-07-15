@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, AlertController, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { NavigationHeaderComponent } from '../components/navigation-header.component';
 import { UtilityService } from '../services/utility.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { UtilityService } from '../services/utility.service';
   templateUrl: './webcam.page.html',
   styleUrls: ['./webcam.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, ]
 })
 export class WebcamPage implements OnInit {
 [x: string]: any;

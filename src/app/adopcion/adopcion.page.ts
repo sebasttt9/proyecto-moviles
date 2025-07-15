@@ -10,7 +10,7 @@ import { NavigationHeaderComponent } from '../components/navigation-header.compo
   templateUrl: './adopcion.page.html',
   styleUrls: ['./adopcion.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, ]
 })
 export class AdopcionPage implements OnInit {
   private alertCtrl = inject(AlertController);

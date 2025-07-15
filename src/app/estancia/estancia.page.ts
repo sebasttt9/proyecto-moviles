@@ -12,7 +12,7 @@ import { Geolocation } from '@capacitor/geolocation';
   templateUrl: './estancia.page.html',
   styleUrls: ['./estancia.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, ]
 })
 export class EstanciaPage implements OnInit {
 

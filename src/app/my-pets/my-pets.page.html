@@ -1,19 +1,4 @@
-<app-navigation-header 
-  title="Mis Mascotas" 
-  [showHomeButton]="true"
-  [endButtons]="true">
-  <ion-button slot="end" (click)="addPet()" fill="clear">
-    <ion-icon name="add" color="light"></ion-icon>
-  </ion-button>
-</app-navigation-header>
-
 <ion-content [fullscreen]="true">
-  <!-- Header -->
-  <div class="page-header">
-    <h1>Mis Mascotas</h1>
-    <p>Gestiona la información de tus compañeros peludos</p>
-  </div>
-
   <!-- Segments -->
   <ion-segment 
     [(ngModel)]="selectedSegment" 

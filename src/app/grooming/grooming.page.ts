@@ -11,7 +11,7 @@ import { UtilityService } from '../services/utility.service';
   templateUrl: './grooming.page.html',
   styleUrls: ['./grooming.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, ]
 })
 export class GroomingPage implements OnInit {
   stats = {

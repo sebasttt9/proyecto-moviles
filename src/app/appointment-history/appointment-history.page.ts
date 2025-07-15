@@ -25,7 +25,7 @@ interface Appointment {
   templateUrl: './appointment-history.page.html',
   styleUrls: ['./appointment-history.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule, NavigationHeaderComponent]
+  imports: [IonicModule, CommonModule, RouterModule, ]
 })
 export class AppointmentHistoryPage implements OnInit {
   appointments: Appointment[] = [
