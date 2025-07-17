@@ -66,24 +66,49 @@ ion-content {
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     
+    /* Glass change photo button */
     .change-photo-btn {
       position: absolute;
       bottom: 10px;
       right: 10px;
-      --background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-      --color: white;
-      --border-radius: 50%;
       width: 40px;
       height: 40px;
-      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+      --border-radius: 50%;
+      --color: white;
+      --background: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated: transparent;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.18) !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      border-radius: 50% !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, background 0.2s ease;
       
       ion-icon {
         font-size: 1.2rem;
       }
       
       &:hover {
-        --background: linear-gradient(135deg, #44A08D 0%, #3D8B7A 100%);
+        background: rgba(255, 255, 255, 0.28) !important;
         transform: scale(1.1);
+      }
+      &:active {
+        transform: scale(1.05);
+      }
+      &::part(native) {
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      &:focus,
+      &:active,
+      &:focus-visible,
+      &:focus-within {
+        outline: none !important;
+        box-shadow: none !important;
       }
     }
   }
@@ -214,16 +239,45 @@ ion-content {
       margin: 0;
     }
     
+    /* Glass edit button */
     .edit-btn {
-      --color: #4ECDC4;
+      --color: white;
+      --background: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated: transparent;
       font-weight: 600;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.18) !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      border-radius: 20px !important;
+      padding-inline: 16px;
+      min-height: 36px;
+      transition: transform 0.2s ease, background 0.2s ease;
       
       ion-icon {
         margin-right: 5px;
       }
       
       &:hover {
-        --background: rgba(78, 205, 196, 0.1);
+        background: rgba(255, 255, 255, 0.28) !important;
+        transform: translateY(-2px);
+      }
+      &:active {
+        transform: translateY(-1px);
+      }
+      &::part(native) {
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      &:focus,
+      &:active,
+      &:focus-visible,
+      &:focus-within {
+        outline: none !important;
+        box-shadow: none !important;
       }
     }
   }
@@ -379,15 +433,22 @@ ion-content {
     flex-direction: column;
     gap: 10px;
     
+    /* Glass settings buttons */
     .setting-btn {
       --color: white;
       --background: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated: transparent;
       height: 60px;
       justify-content: flex-start;
       text-align: left;
       border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.12) !important;
+      padding-inline: 16px;
       
       span {
         flex: 1;
@@ -398,32 +459,47 @@ ion-content {
       }
       
       &:hover {
-        --background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.22) !important;
         transform: translateX(5px);
       }
+      &:active {
+        background: rgba(255, 255, 255, 0.18) !important;
+      }
+      &::part(native) {
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      &:focus,
+      &:active,
+      &:focus-visible,
+      &:focus-within {
+        outline: none !important;
+        box-shadow: none !important;
+      }
       
+      /* Mantén leve color de texto para comunicar estado, sin fondo rojo/verde */
       &.logout-btn {
-        --color: #FF9800;
-        border-color: rgba(255, 152, 0, 0.3);
-        
+        --color: #ffd180; // amarillo suave
+        border-color: rgba(255, 209, 128, 0.4);
         &:hover {
-          --background: rgba(255, 152, 0, 0.1);
+          background: rgba(255, 209, 128, 0.15) !important;
         }
       }
       
       &.danger-btn {
-        --color: #F44336;
-        border-color: rgba(244, 67, 54, 0.3);
-        
+        --color: #ff9e9e; // rojo suave
+        border-color: rgba(255, 158, 158, 0.4);
         &:hover {
-          --background: rgba(244, 67, 54, 0.1);
+          background: rgba(255, 158, 158, 0.15) !important;
         }
       }
     }
   }
 }
 
-// Quick Actions
+// Quick Actions (layout wrapper)
 .quick-actions {
   display: flex;
   gap: 20px;
@@ -437,6 +513,9 @@ ion-content {
   }
 }
 
+/* ================================
+   GLASS ACTION BUTTON (Perfil)
+   ================================ */
 .action-btn {
   height: 60px;
   width: 280px;
@@ -447,7 +526,32 @@ ion-content {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  // Glass base
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  // Ionic vars neutras
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --color: white;
+  --color-hover: white;
+  --color-activated: white;
+  --color-focused: white;
+  --border-radius: 30px;
+  --box-shadow: none;
+  --padding-start: 0;
+  --padding-end: 0;
+
   @media (max-width: 768px) {
     width: 100%;
     max-width: 300px;
@@ -468,35 +572,54 @@ ion-content {
     left: 100%;
   }
   
-  &.primary {
-    --background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
-    --color: white;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    
-    &:hover {
-      --background: linear-gradient(135deg, #EE5A52 0%, #DC4C46 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-    }
-    
-    &:active {
-      transform: translateY(-1px);
-    }
+  &:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
   
+  &:active {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  // Eliminar contornos internos
+  &::part(native) {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  &:focus,
+  &:active,
+  &:focus-visible,
+  &:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  &::part(focus-indicator) {
+    display: none !important;
+  }
+  &::part(ripple) {
+    opacity: 0.15;
+  }
+  
+  // Compatibilidad con las clases .primary / .secondary (sin colores)
+  &.primary,
   &.secondary {
-    --background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-    --color: white;
-    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
-    
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
     &:hover {
-      --background: linear-gradient(135deg, #44A08D 0%, #3D8B7A 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(78, 205, 196, 0.6);
+      background: rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
     }
-    
     &:active {
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.22) !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
     }
   }
   

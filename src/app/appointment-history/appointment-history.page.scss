@@ -300,6 +300,7 @@ ion-content {
     }
   }
   
+  /* Glass action buttons inside each appointment */
   .appointment-actions {
     display: flex;
     gap: 10px;
@@ -310,13 +311,45 @@ ion-content {
     ion-button {
       --color: white;
       --background: transparent;
+      --background-hover: transparent;
+      --background-activated: transparent;
+      --background-focused: transparent;
       --border-radius: 15px;
       --padding-start: 12px;
       --padding-end: 12px;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.12) !important;
+      min-height: 44px;
+      transition: background 0.2s ease, transform 0.2s ease;
       
       &:hover {
-        --background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.22) !important;
+        transform: translateY(-2px);
+      }
+      &:active {
+        background: rgba(255, 255, 255, 0.18) !important;
+        transform: translateY(-1px);
+      }
+      &::part(native) {
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+      &:focus,
+      &:active,
+      &:focus-visible,
+      &:focus-within {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      &::part(focus-indicator) {
+        display: none !important;
+      }
+      &::part(ripple) {
+        opacity: 0.15;
       }
       
       ion-icon {
@@ -372,7 +405,7 @@ ion-content {
   }
 }
 
-// Quick Actions
+// Quick Actions (layout)
 .quick-actions {
   display: flex;
   justify-content: center;
@@ -386,6 +419,9 @@ ion-content {
   }
 }
 
+/* ================================
+   GLASS ACTION BUTTON (Historial)
+   ================================ */
 .action-btn {
   height: 60px;
   width: 280px;
@@ -396,7 +432,32 @@ ion-content {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  // Glass base
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  // Ionic neutral vars to prevent internal fill
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --color: white;
+  --color-hover: white;
+  --color-activated: white;
+  --color-focused: white;
+  --border-radius: 30px;
+  --box-shadow: none;
+  --padding-start: 0;
+  --padding-end: 0;
+
   @media (max-width: 768px) {
     width: 100%;
     max-width: 300px;
@@ -417,30 +478,54 @@ ion-content {
     left: 100%;
   }
   
-  &.primary {
-    --background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
-    --color: white;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    
-    &:hover {
-      --background: linear-gradient(135deg, #EE5A52 0%, #DC4C46 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-    }
-    
-    &:active {
-      transform: translateY(-1px);
-    }
+  &:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
   
+  &:active {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Quitar contornos internos */
+  &::part(native) {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  &:focus,
+  &:active,
+  &:focus-visible,
+  &:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  &::part(focus-indicator) {
+    display: none !important;
+  }
+  &::part(ripple) {
+    opacity: 0.15;
+  }
+
   ion-icon {
     font-size: 1.4rem;
     margin-right: 10px;
     transition: transform 0.3s ease;
   }
-  
   &:hover ion-icon {
     transform: scale(1.1);
+  }
+
+  /* Si mantienes class="action-btn primary", no cambia el color */
+  &.primary {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: white !important;
   }
 }
 
